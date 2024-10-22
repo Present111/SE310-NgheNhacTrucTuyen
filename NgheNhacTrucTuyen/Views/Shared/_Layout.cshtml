@@ -1,39 +1,455 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using NgheNhacTrucTuyen.Models
+
+@{
+    DBcontextDataContext context = new DBcontextDataContext();
+
+    bool islogin = false ;
+    bool adm = false;
+
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COLMUSIC</title>
+    <link rel="icon"
+          href="assets/image/logo.jpg" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2" />
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <link rel="stylesheet" href="~/Content/xpui.css" />
+    <link rel="stylesheet" href="~/fonts/fontawesome-free-6.2.0-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Scripts/playaudio.js" />
+
+
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <div class="Root encore-dark-theme">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+            <div class="Root__top-bar">
+                <header class="header header-br">
+                    <div class="Button">
+                        <button aria-label="Quay lại" class="btn return-button">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </button><button data-testid="top-bar-forward-button"
+                                         aria-label="Tiếp theo"
+                                         disabled=""
+                                         class="btn forward-button">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </button>
+                    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                    @{
+                        if (islogin == false)
+                        {
+                            <div class="head-option">
+                                <button class="btn-dangky">
+                                    <a href="/login/signup">Đăng ký</a>
+                                </button>
+                                <button data-testid="login-button" class="btn-dangnhap">
+                                    <a href="/login/login"><span class="sp-dangnhap encore-inverted-light-set">Đăng nhập</span></a>
+                                </button>
+                            </div>
+                        }
+                        if (islogin == true)
+                        {
+
+                            <div class="head-option">
+                                <button class="btn-dangky">
+                                    chào @User.Identity.Name
+                                </button>
+                                <button data-testid="login-button" class="btn-dangnhap">
+                                    <a href="/login/logout"><span class="sp-dangnhap encore-inverted-light-set">Đăng xuất</span></a>
+                                </button>
+                            </div>
+                        }
+
+
+                    }
+
+                </header>
+            </div>
+            <nav aria-label="Chính" class="Root__nav-bar">
+                <div class="tUwyjggD2n5KvEtP5z1B">
+                    <div class="NyIynkmMpZXSoaE3XGhA" role="banner">
+                        <a aria-current="page"
+                           class="logo WJsKJXEbycxxq8OcGHM1 active"
+                           draggable="false"
+                           href="/Home/Index">
+                            <img src="~/image/spotify.jpg" class="spotify-logo--text">
+                        </a>
+                    </div>
+                    <ul class="RSg3qFREWrqWCuUvDpJR">
+                        <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
+                            <label aria-current="page"
+                                   class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                   draggable="false"
+                                   onclick="viewindex()">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Trang chủ</span>
+                            </label>
+                        </li>
+                        <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
+                            <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                   draggable="false"
+                                   onclick="viewsearch()">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Tìm kiếm</span>
+                            </label>
+                        </li>
+                        <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
+                            <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                   draggable="false"
+                                   onclick="viewlibrary()">
+                                <i class="fa-solid fa-swatchbook"></i>
+                                <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Thư viện</span>
+                            </label>
+                        </li>
+                        @{ if (islogin == true && adm == true)
+                            {
+                                <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
+                                    <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                           draggable="false"
+                                           onclick="viewQLBH()">
+                                        <i class="fa-solid fa-list-check"></i>
+                                        <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Quản lý bài hát</span>
+                                    </label>
+                                </li>
+                                <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
+                                    <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                           draggable="false"
+                                           onclick="viewQLTK()">
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Quản lý tài khoản</span>
+                                    </label>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <div class="LKgm9fCDTO7wqig_5U1q" data-testid="rootlist-container">
+                        <div class="EY6S7vlkxB7SF_OjjF_Y">
+                            <div class="GlueDropTarget GlueDropTarget--albums GlueDropTarget--tracks GlueDropTarget--local-tracks GlueDropTarget--episodes">
+
+                                <button type="button" id="mybtn"
+                                        class="IPVjkkhh06nan7aZK7Bx"
+                                        onclick="viewThemPL()"
+                                        data-testid="create-playlist-button">
+                                    <div class="Bwc9jlVb7HWs8JJupnBB">
+                                        <div class="q3ABXYJT9JZIzXOOtVuO">
+                                            <i class="fa-solid fa-plus Svg-ytk21e-0 eqtHWV"></i>
+                                        </div>
+                                    </div>
+                                    <span class="Type__TypeElement-goli3j-0 hkMLug J4xXuqyaJnnwS6s2p3ZB standalone-ellipsis-one-line">Tạo playlist</span>
+
+                                    </a>
+                            </div>
+                            <div class="GlueDropTarget GlueDropTarget--tracks">
+                                <label class="r9YzlaAPnM2LGK97GSfa"
+                                       draggable="false"
+                                       onclick="viewBHYT()">
+                                    <div class="bFQ9NOIn1bDs8tTH0ebQ">
+                                        <div class="Nd_DeCpszONzyaLe5Wd1">
+                                            <i class="fa-solid fa-heart Svg-ytk21e-0 eqtHWV"></i>
+                                        </div>
+                                    </div>
+                                    <span class="Type__TypeElement-goli3j-0 hkMLug standalone-ellipsis-one-line ot6VAZq1Xfbw2Vh8Qt_A">Bài hát đã thích</span>
+                                    <div class="gtuJjD43VjwtP8ii3H3P"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="Root__now-playing-bar" style="width:1535px;">
+                <footer class="GD2gbRtcs5dOjMGAM_Y4"
+                        data-testid="now-playing-bar"
+                        data-testadtype="ad-type-none">
+                    <div class="OCY4jHBlCVZEyGvtSv0J">
+                        <div class="OgkbKIVYE_mrNpYESylB">
+                            <div class="deomraqfhIAoSB3SgXpu">
+                                <div data-testid="CoverSlotCollapsed__container"
+                                     class="rVxzkDirgkuRPv5V1HYF IcyWfMS5VkeOhaI7OWIx"
+                                     aria-hidden="false">
+                                    <div draggable="true">
+                                        <a href=""
+                                           style="border: none">
+                                            <div class="cover-art cover-art-image" style="width: 56px; height: 56px">
+                                                <div>
+                                                    <img src="~/image/tải xuống.jpg"
+                                                         class="mMx2LUixlnN_Fu45JpFB cover-art-image Yn2Ei5QZn19gria6LjZj" id="imagelayout" />
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ZcNcu7WZgOAz_Mkcoff3">
+                                    <div class="Q_174taY6n64ZGC3GsKj">
+                                        <div class="eSMjmiD29Ox35O95waw6">
+                                            <div class="W5cB_o0XkkU7Q8tlTGxq">
+                                                <div class="PGSe59fD1Hwc9yUM2d3U"
+                                                     style="--trans-x: 0px">
+                                                    <div class="Type__TypeElement-goli3j-0 iTnRIT Q_174taY6n64ZGC3GsKj"
+                                                         dir="auto">
+                                                        <span draggable="true">
+                                                            <a href=""
+                                                               style="border: none" id="tenbaihatlayout">
+
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gpNta6i8q3KYJC6WBZQC">
+                                        <div class="eSMjmiD29Ox35O95waw6">
+                                            <div class="W5cB_o0XkkU7Q8tlTGxq">
+                                                <div class="PGSe59fD1Hwc9yUM2d3U"
+                                                     style="--trans-x: 0px">
+                                                    <div data-testid="context-item-info-subtitles"
+                                                         class="Type__TypeElement-goli3j-0 jObFUN gpNta6i8q3KYJC6WBZQC">
+                                                        <span draggable="true">
+                                                            <a dir="auto"
+                                                               href="" id="tencasilayout"></a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="P4eSEARM2h24PZxMHz1T">
+                            <div class="player-controls"
+                                 data-testid="player-controls"
+                                 dir="ltr"
+                                 aria-label="Điều khiển trình phát">
+                                <div class="player-controls__buttons player-controls__buttons--new-icons">
+                                    <div class="player-controls__left">
+                                        <button class="fn72ari9aEmKo4JcwteT"
+                                                aria-label="Trộn"
+                                                style="--button-size: 32px">
+                                            <i class="fa-solid fa-shuffle"></i>
+                                        </button>
+                                        <button class="fn72ari9aEmKo4JcwteT"
+                                                aria-label="Trước"
+                                                onclick=" playPrev()"
+                                                style="--button-size: 32px">
+                                            <i class="fa-solid fa-backward"></i>
+                                        </button>
+                                    </div>
+                                    <button class="vnCew8qzJq3cVGlYFXRI" onclick="playaudioo()"
+                                            aria-label="Phát" id="playbtn"
+                                            style="--button-size: 32px">
+                                        <i class="fa-solid fa-play"></i>
+                                    </button>
+                                    <button class="vnCew8qzJq3cVGlYFXRI" onclick="pauseaudioo()"
+                                            aria-label="Dừng" id="pausebtn"
+                                            style="--button-size: 32px; display: none;">
+                                        <i class="fa-solid fa-pause"></i>
+                                    </button>
+                                    <div class="player-controls__right">
+                                        <button class="mnipjT4SLDMgwiDCEnRC"
+                                                aria-label="Tiếp"
+                                                onclick="playNext()"
+                                                style="--button-size: 32px">
+                                            <i class="fa-solid fa-forward"></i>
+                                        </button>
+                                        <button class="mnipjT4SLDMgwiDCEnRC"
+                                                aria-label="Lặp"
+                                                style="--button-size: 32px">
+                                            <i class="fa-solid fa-repeat"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="playback-bar">
+
+                                    <div class="p1ULRzPc4bD8eQ4T_wyp DFtdzavKSbEhwKYkPTa6"
+                                         data-testid="playback-progressbar">
+                                        <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100"
+                                               style=" width: 100%; margin-bottom: 15px; height: 6px; background: #d3d3d3; outline: none; opacity: 0.7; -webkit-transition: 0.2s; transition: opacity 0.2s;">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jOKLc29vP0Bz1K0TsDtX">
+                            <i class="fa-solid fa-volume-low" style="margin-right: 20px;" onclick="document.getElementById('demo').volume -= 0.1;"></i>
+
+                            <i class="fa-solid fa-volume-high" style="margin-right: 80px;" onclick="document.getElementById('demo').volume += 0.1;"></i>
+
+
+
+
+                        </div>
+                    </div>
+
+                </footer>
+            </div>
+            <audio src="" id="demo"></audio>
+
+            @RenderBody()
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function playaudio1(message, anh, ten, casi) {
+
+            document.getElementById('demo').pause();
+            document.getElementById('demo').src = message;
+            document.getElementById('demo').play();
+            document.getElementById('imagelayout').src = anh;
+            document.getElementById('tenbaihatlayout').textContent = ten;
+            document.getElementById('tencasilayout').textContent = casi;
+            document.getElementById('playbtn').style.display = 'none';
+            document.getElementById('pausebtn').style.display = 'block';
+        }
+        function playaudioo() {
+            document.getElementById('demo').play();
+            document.getElementById('playbtn').style.display = 'none';
+            document.getElementById('pausebtn').style.display = 'block';
+        }
+        function pauseaudioo() {
+            document.getElementById('demo').pause();
+            document.getElementById('playbtn').style.display = 'block';
+            document.getElementById('pausebtn').style.display = 'none';
+        }
+        function hienmodalthem() {
+            document.getElementById('menuthem').style.display = 'block';
+
+        }
+        function tatmodalthem() {
+            document.getElementById('menuthem').style.display = 'none';
+        }
+        var audio = document.getElementById('demo');
+        var progress = document.getElementById('progress');
+
+        function playNext() {
+            currentIndex = (currentIndex + 1) % count;
+            var song = playlist[currentIndex];
+            playaudio1(song.Files, song.image, song.TenBH, song.Casi);
+        }
+
+        function playPrev() {
+            currentIndex = (currentIndex + count - 1) % count;
+            var song = playlist[currentIndex];
+            playaudio1(song.Files, song.image, song.TenBH, song.Casi);
+        }
+        // Khi tiến độ bài hát thay đổi
+        // When the song progress changes
+        audio.ontimeupdate = function () {
+            if (audio.duration) {
+                const progressPercent = Math.floor(
+                    (audio.currentTime / audio.duration) * 100
+                );
+                progress.value = progressPercent;
+            }
+        };
+
+        // Xử lý khi tua song
+        // Handling when seek
+        progress.onchange = function (e) {
+            const seekTime = (audio.duration / 100) * e.target.value;
+            audio.currentTime = seekTime;
+        };
+        function viewsearch() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/Search",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+        function viewindex() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/Index1",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+        function viewlibrary() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/Library",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+        function viewQLBH() {
+            $.ajax({
+                type: "GET",
+                url: "/QLBH/DSBaiHat",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        } function viewQLTK() {
+            $.ajax({
+                type: "GET",
+                url: "/QLTK/DSTaiKhoan",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+        function viewBHYT() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/Baihatyeuthich",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+        function viewThemPL() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/ThemPL",
+                success: function (data) {
+                    $('.Root__main-view').replaceWith(data);
+                },
+                error: function (data) {
+                    alert('Lỗi!');
+                }
+            });
+        }
+
+    </script>
+
+
 </body>
+
 </html>

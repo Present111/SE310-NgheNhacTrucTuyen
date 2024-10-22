@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebNhac" Class="DBcontextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.account" Member="accounts">
+    <Type Name="account">
+      <Column Name="MaTK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="account_PlayList" Member="PlayLists" ThisKey="MaTK" OtherKey="Matk" Type="PlayList" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CaSi" Member="CaSis">
+    <Type Name="CaSi">
+      <Column Name="MaCS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenCS" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="CaSi_Nhac" Member="Nhacs" ThisKey="MaCS" OtherKey="MaCS" Type="Nhac" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChuDe" Member="ChuDes">
+    <Type Name="ChuDe">
+      <Column Name="MaCD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenCD" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Picture" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Association Name="ChuDe_Nhac" Member="Nhacs" ThisKey="MaCD" OtherKey="MaCD" Type="Nhac" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nhac" Member="Nhacs">
+    <Type Name="Nhac">
+      <Column Name="MaBH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenBH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Files" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NgayPH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaCS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaTL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaCD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Nhac_PlayList" Member="PlayLists" ThisKey="MaBH" OtherKey="MaBH" Type="PlayList" />
+      <Association Name="ChuDe_Nhac" Member="ChuDe" ThisKey="MaCD" OtherKey="MaCD" Type="ChuDe" IsForeignKey="true" />
+      <Association Name="CaSi_Nhac" Member="CaSi" ThisKey="MaCS" OtherKey="MaCS" Type="CaSi" IsForeignKey="true" />
+      <Association Name="TheLoai_Nhac" Member="TheLoai" ThisKey="MaTL" OtherKey="MaTL" Type="TheLoai" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayList" Member="PlayLists">
+    <Type Name="PlayList">
+      <Column Name="Matk" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaBH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenPL" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="stt" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Nhac_PlayList" Member="Nhac" ThisKey="MaBH" OtherKey="MaBH" Type="Nhac" IsForeignKey="true" />
+      <Association Name="account_PlayList" Member="account" ThisKey="Matk" OtherKey="MaTK" Type="account" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TheLoai" Member="TheLoais">
+    <Type Name="TheLoai">
+      <Column Name="MaTL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTL" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="TheLoai_Nhac" Member="Nhacs" ThisKey="MaTL" OtherKey="MaTL" Type="Nhac" />
+    </Type>
+  </Table>
+</Database>
