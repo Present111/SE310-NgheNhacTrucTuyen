@@ -18,5 +18,14 @@ namespace NgheNhacTrucTuyen.Controllers
             ViewBag.jointable = nhac;
             return View();
         }
+        public ActionResult Index1()
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            var theloai = context.TheLoais.ToList();
+            ViewBag.test = theloai;
+            var nhac = context.Nhacs.ToList();
+            ViewBag.jointable = nhac;
+            return PartialView("Index1");
+        }
     }
 }

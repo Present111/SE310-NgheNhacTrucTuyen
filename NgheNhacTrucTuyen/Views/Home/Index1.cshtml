@@ -1,0 +1,136 @@
+﻿
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div class="under-main-view"></div>
+        <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden main-view-container__scroll-node os-host-overflow os-host-overflow-y os-host-transition">
+            <div class="os-resize-observer-host observed">
+                <div class="os-resize-observer"
+                     style="left: 0px; right: auto"></div>
+            </div>
+            <div class="os-padding">
+                <div class="os-viewport os-viewport-native-scrollbars-invisible"
+                     style="overflow-y: scroll">
+                    <div class="os-content"
+                         style="padding: 0px; height: 100%; width: 100%">
+                        <div class="main-view-container__scroll-node-child-spacer"></div>
+                        <div class="main-view-container__scroll-node-child"
+                             style="
+                          min-height: calc(((100vh - 64px) - 90px) - 519px);
+                        ">
+                            <main tabindex="-1"
+                                  aria-label="Spotify – Trình phát trên web">
+                                <div class="HsbczDqu9qjcYr7EIdHR"
+                                     style="background-color: rgb(83, 83, 83)"></div>
+                                <section data-testid="home-page">
+                                    @foreach (var item1 in ViewBag.test)
+
+                                    {
+                                        <div class="uIJTvxFOg2izOY7aRRiU">
+                                            <div class="I3EivnXTjYMpSbPUiYEg contentSpacing">
+                                                <section class="QyANtc_r7ff_tqrf5Bvc"
+                                                         data-testid="component-shelf"
+                                                         aria-label="Spotify Playlists">
+                                                    <div class="q8AZzDc_1BumBHZg0tZb">
+                                                        <div class="OMuRYOdpUbGif12_lRJl">
+                                                            <div class="onVWL7MW4PW9FyVajBAc">
+                                                                <h2 class="Type__TypeElement-goli3j-0 eJZNLq">
+                                                                    <a draggable="false"
+                                                                       data-testid="see-all-link"
+                                                                       class="MfVrtIzQJ7iZXfRWg6eM"
+                                                                       href="/section/0JQ5DAuChZYPe9iDhh2mJz">@item1.TenTL </a>
+                                                                </h2>
+                                                            </div>
+                                                            <a draggable="false"
+                                                               class="a7lvtXATo3HALtrsOHtO HOgue4Eg4UdBR58M0633"
+                                                               href="/section/0JQ5DAuChZYPe9iDhh2mJz">
+                                                                <span class="Type__TypeElement-goli3j-0 kiDDHS">Xem tất cả</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div data-testid="grid-container"
+                                                         class="iKwGKEfAfW7Rkx2_Ba4E Z4InHgCs2uhk0MU93y_a"
+                                                         style="
+                                      --column-width: 188px;
+                                      --column-count: 6;
+                                      --grid-gap: 24px;
+                                    ">
+                                                        @foreach (var item in ViewBag.jointable)
+                                                        {
+                                                            if (item.MaTL == item1.MaTL)
+                                                            {
+
+                                                                <div class="LunqxlFIupJw_Dkx6mNx">
+                                                                    <div draggable="true"
+                                                                         class="XiVwj5uoqqSFpS4cYOC6">
+                                                                        <div class="xBV4XgMq0gC5lQICFWY_">
+                                                                            <div class="g4PZpjkqEh5g7xDpCr2K"
+                                                                                 style="--card-color: #857815">
+                                                                                <div class="">
+                                                                                    <img aria-hidden="false"
+                                                                                         draggable="false"
+                                                                                         loading="lazy"
+                                                                                         src="~/image/@item.image"
+                                                                                         data-testid="card-image"
+                                                                                         alt=""
+                                                                                         class="mMx2LUixlnN_Fu45JpFB SKJSok3LfyedjZjujmFt yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="woJQ5t2YiaJhjTv_KE7p">
+                                                                                <div class="PFgcCoJSWC3KjhZxHDYH">
+                                                                                    <button data-testid="play-button"
+                                                                                            onclick="playaudio1('/Sound/@item.Files', '/image/@item.image', '@item.TenBH', '@item.CaSi.TenCS' )"
+                                                                                            class="Button-qlcn5g-0 cKBTSk">
+                                                                                        <i class="fa-solid fa-circle-play fa-3x"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="E1N1ByPFWo4AJLHovIBQ">
+                                                                            <button draggable="false"
+                                                                                    style=" border: none; background-color: hsl(0deg 0% 9%);"
+                                                                                    class="Nqa6Cw3RkDMV8QnYreTr"
+                                                                                    dir="auto"
+                                                                                    onclick="Baihat(@item.MaBH)">
+                                                                                <div class="Type__TypeElement-goli3j-0 iCdlru nk6UgB4GUYNoAcPtAQaG">
+                                                                                    @item.TenBH
+                                                                                </div>
+                                                                            </button>
+                                                                            <div class="Type__TypeElement-goli3j-0 gPOKDu Za_uNH8nTZ0qCuIqbPLZ">
+                                                                                @item.CaSi.TenCS
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="tsv7E_RBBw6v0XTQlcRo"
+                                                                             data-testid="card-click-handler"></div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    }
+                                </section>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Baihat(mabh) {
+        $.ajax({
+            type: "GET",
+            url: "/Home/Baihat/" + mabh,
+            success: function (data) {
+                $('.Root__main-view').replaceWith(data);
+            },
+            error: function (data) {
+                alert('Lỗi!');
+            }
+        });
+    }
+</script>
