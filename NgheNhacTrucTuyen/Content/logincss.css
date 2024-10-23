@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
@@ -127,8 +127,8 @@ p {
     text-align: center;
     width: 100%;
 }
-.signup-wrapper .signup-form .signup {
-  background-color: red;
+.signup-wrapper .signup-form {
+  background-color: green;
   border: none;
   color: white;
   padding: 15px 25px;
@@ -137,6 +137,22 @@ p {
   margin-top: 49px;
   border-radius: 5px;
 }
+.signup {
+    background-color: #1ED760; /* Màu nền xanh lá */
+    border: none; /* Loại bỏ viền */
+    color: black; /* Màu chữ đen */
+    padding: 15px 50px; /* Khoảng cách trong nút */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    border-radius: 50px; /* Bo góc tròn */
+    cursor: pointer; /* Con trỏ khi hover */
+    text-align: center;
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+    .signup:hover {
+        background-color: #1DB954; /* Màu nền đậm hơn khi hover */
+    }
 .signup-wrapper .signup-form .login {
   color: red;
   padding: 20px;

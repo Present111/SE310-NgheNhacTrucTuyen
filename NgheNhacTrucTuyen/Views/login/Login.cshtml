@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COLMUSIC</title>
+    <link rel="icon"
+          href="https://banner2.cleanpng.com/20191001/gc/transparent-musical-note-icon-music-icon-5d93ae3cc2e344.5700187015699594847983.jpg" />
+
+    <link rel="stylesheet" href="~/Content/logincss.css" />
+    <link rel="stylesheet"
+          href="~/fonts/fontawesome-free-6.2.0-web/css/all.min.css" />
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="signup-wrapper shadow-box">
+                <div class="company-details">
+                    <div class="shadow"></div>
+                    <div class="wrapper-1">
+                        <a href="/Home/Index" style="text-decoration: none;">
+                            <div class="logo">
+                                <i class="fa-solid fa-music fa-3x"></i>
+                            </div>
+                            <h1 class="title">COLMUSIC</h1>
+                            <div class="slogan">Mang lại trải nghiệm mới về âm nhạc</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <div class="wrapper-2">
+                        <div class="form-title">Đăng nhập</div>
+                        @ViewBag.error
+                        <div class="form">
+                            <form method="post" action="/login/Login">
+                                <p class="content-item">
+                                    <label>
+                                        Email
+                                        <input type="email"
+                                               placeholder="vui lòng nhập email"
+                                               name="email"
+                                               required />
+                                    </label>
+                                </p>
+
+                                <p class="content-item">
+                                    <label>
+                                        Mật khẩu
+                                        <input type="password"
+                                               placeholder="Vui lòng nhập mật khẩu"
+                                               name="password"
+                                               required />
+                                    </label>
+                                </p>
+
+                                <div style="
+                                    height: 10vh; /* Chiều cao toàn màn hình */
+                                    display: flex; /* Sử dụng Flexbox */
+                                    justify-content: center; /* Căn giữa theo chiều ngang */
+                                    align-items: center; /* Căn giữa theo chiều dọc */
+                                    background-color: white; /* Màu nền tùy chọn */
+">
+                                    <button type="submit" style="
+                                        background-color: #1ED760; /* Màu xanh lá */
+                                        border: none;
+                                        color: black; /* Màu chữ đen */
+                                        padding: 15px 25px;
+                                        font-size: 1em;
+                                        font-weight: bold;
+                                        text-transform: capitalize;
+                                        border-radius: 50px; /* Bo tròn góc */
+                                        cursor: pointer;
+                                        transition: background-color 0.3s ease;
+    ">
+                                        Đăng Nhập
+                                    </button>
+                                </div>
+                                <p class="signup-text" style="
+                                    margin-top: 10px; /* Khoảng cách với nút Đăng Nhập */
+                                    text-align: center; /* Căn giữa văn bản */
+                                    color: #b3b3b3; /* Màu xám nhạt cho văn bản */
+                                    font-size: 1em;">
+                                    Bạn chưa có tài khoản?
+                                    <a href="/login/SignUp" style="
+                                        color: blue; /* Màu chữ cho liên kết */
+                                        font-weight: bold;
+                                        text-decoration: underline; /* Gạch chân văn bản */
+                                        transition: color 0.3s ease; /* Hiệu ứng khi hover */">
+                                        Đăng ký Spotify.
+                                    </a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+          rel="stylesheet" />
+</body>
+</html>
+
