@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COLMUSIC</title>
+    <link rel="icon"
+          href="https://banner2.cleanpng.com/20191001/gc/transparent-musical-note-icon-music-icon-5d93ae3cc2e344.5700187015699594847983.jpg" />
+
+    <link rel="stylesheet" href="~/Content/logincss.css" />
+    <link rel="stylesheet"
+          href="~/fonts/fontawesome-free-6.2.0-web/css/all.min.css" />
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="signup-wrapper shadow-box">
+                <div class="company-details">
+                    <div class="shadow"></div>
+                    <div class="wrapper-1">
+                        <div class="logo">
+                            <i class="fa-solid fa-music fa-3x"></i>
+                        </div>
+                        <h1 class="title">COLMUSIC</h1>
+                        <div class="slogan">Mang lại trải nghiệm mới về âm nhạc</div>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <div class="wrapper-2">
+                        <div class="form-title">Đăng ký ngay hôm nay</div>
+                        <div class="form">
+                            <form method="post" action="/login/SignUp">
+                                <p class="content-item">
+                                    <label>
+                                        Email
+                                        <input type="email"
+                                               placeholder="vui lòng nhập email"
+                                               name="email"
+                                               required />
+                                    </label>
+                                </p>
+                                @ViewBag.erro
+
+
+                                <p class="content-item">
+                                    <label>
+                                        Mật khẩu
+                                        <input type="password"
+                                               placeholder="Vui lòng nhập mật khẩu"
+                                               name="psw"
+                                               required />
+                                    </label>
+                                </p>
+
+                                <p class="content-item">
+                                    <label>
+                                        Tên
+                                        <input type="text"
+                                               placeholder="Điền tên sẽ hiện trong hồ sơ của bạn"
+                                               name="ten"
+                                               required />
+                                    </label>
+                                </p>
+                                @ViewBag.Sucess
+
+                                <button type="submit" class="signup">Đăng ký</button>
+                                <a href="/login/Login" class="login">Đăng nhập</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+          rel="stylesheet" />
+</body>
+</html>
+
