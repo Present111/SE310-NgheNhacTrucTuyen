@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "TimKiem";
+}
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div style="margin-top: 64px;">
+
+        </div>
+        <div class="under-main-view"></div>
+        <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden main-view-container__scroll-node os-host-transition os-host-overflow os-host-overflow-y">
+            <div class="os-resize-observer-host observed">
+                <div class="os-resize-observer"
+                     style="left: 0px; right: auto"></div>
+            </div>
+            <div class="os-padding">
+                <div class="os-viewport os-viewport-native-scrollbars-invisible"
+                     style="overflow-y: scroll">
+                    <div class="os-content"
+                         style="padding: 0px; height: 100%; width: 100%">
+                        <div class="main-view-container__scroll-node-child-spacer"></div>
+                        <div class="search-bar">
+                            <form action="/Home/TimKiem" method="get">
+                                <input class="Type__TypeElement-goli3j-0 iTnRIT QO9loc33XC50mMRUCIvf"
+                                       maxlength="800"
+                                       placeholder="Bạn muốn nghe gì?"
+                                       type="search" name="SearchString" />
+                                <button class="t2K4_iLmAyDtH7mcT5Wy" type="submit">
+                                    <span class="H6jh9Xd7DNOq3NsLDmCB">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                </button>
+                            </form>
+                            <div class="t2K4_iLmAyDtH7mcT5Wy">
+                                <span class="H6jh9Xd7DNOq3NsLDmCB">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="main-view-container__scroll-node-child"
+                             style="
+                          min-height: calc(((100vh - 64px) - 90px) - 519px);
+                        ">
+                            <main tabindex="-1" aria-label="Spotify – Tìm kiếm">
+                                <div class="contentSpacing" id="searchPage">
+                                    <div data-testid="grid-container"
+                                         class="iKwGKEfAfW7Rkx2_Ba4E khkfPsJuVBQyL_5cLT7y"
+                                         style="
+                                --column-width: 167px;
+                                --column-count: 4;
+                                --grid-gap: 24px;
+                              ">
+                                        <div class="CCi1L2OQvgdZvxkRHeKE">
+                                            <div class="M7LKuAFiIKaigK0fVguF">
+                                                <section class="QyANtc_r7ff_tqrf5Bvc"
+                                                         data-testid="component-shelf"
+                                                         aria-label="Duyệt tìm tất cả">
+                                                    <div class="q8AZzDc_1BumBHZg0tZb">
+                                                        <div class="OMuRYOdpUbGif12_lRJl">
+                                                            <div class="onVWL7MW4PW9FyVajBAc">
+                                                                <h2 class="Type__TypeElement-goli3j-0 eJZNLq MfVrtIzQJ7iZXfRWg6eM"
+                                                                    tabindex="-1">
+                                                                    Kết quả hàng đầu
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-testid="grid-container"
+                                                         class="iKwGKEfAfW7Rkx2_Ba4E Z4InHgCs2uhk0MU93y_a BtbiwMynlB4flsYu_hA2"
+                                                         style="
+                                        --column-width: 185px;
+                                        --column-count: 6;
+                                        --grid-gap: 24px;
+                                      ">
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <div class="LunqxlFIupJw_Dkx6mNx">
+                                                                <div draggable="true"
+                                                                     class="XiVwj5uoqqSFpS4cYOC6">
+                                                                    <div class="xBV4XgMq0gC5lQICFWY_">
+                                                                        <div class="g4PZpjkqEh5g7xDpCr2K"
+                                                                             style="--card-color: #857815">
+                                                                            <div class="">
+                                                                                <img aria-hidden="false"
+                                                                                     draggable="false"
+                                                                                     loading="lazy"
+                                                                                     src="/image/@item.image"
+                                                                                     data-testid="card-image"
+                                                                                     alt=""
+                                                                                     class="mMx2LUixlnN_Fu45JpFB SKJSok3LfyedjZjujmFt yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="woJQ5t2YiaJhjTv_KE7p">
+                                                                            <div class="PFgcCoJSWC3KjhZxHDYH">
+                                                                                <button data-testid="play-button" onclick="playaudio1('/Sound/@item.Files', '/image/@item.image', '@item.TenBH', '@item.CaSi.TenCS' )"
+                                                                                        class="Button-qlcn5g-0 cKBTSk">
+                                                                                    <i class="fa-solid fa-circle-play fa-3x"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="E1N1ByPFWo4AJLHovIBQ">
+                                                                        <a draggable="false"
+                                                                           title="Today's Top Hits"
+                                                                           class="Nqa6Cw3RkDMV8QnYreTr"
+                                                                           dir="auto"
+                                                                           href="/Home/Baihat/@item.MaBH">
+                                                                            <div class="Type__TypeElement-goli3j-0 iCdlru nk6UgB4GUYNoAcPtAQaG">
+                                                                                @item.TenBH
+                                                                            </div>
+                                                                        </a>
+                                                                        <div class="Type__TypeElement-goli3j-0 gPOKDu Za_uNH8nTZ0qCuIqbPLZ">
+                                                                            @item.CaSi.TenCS
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="tsv7E_RBBw6v0XTQlcRo"
+                                                                         data-testid="card-click-handler"></div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

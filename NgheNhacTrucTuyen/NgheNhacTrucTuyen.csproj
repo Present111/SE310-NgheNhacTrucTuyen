@@ -193,6 +193,8 @@
     <Content Include="Views\Home\Index1.cshtml" />
     <Content Include="Views\login\Login.cshtml" />
     <Content Include="Views\login\SignUp.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

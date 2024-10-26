@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div class="under-main-view"></div>
+        <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden main-view-container__scroll-node os-host-transition os-host-overflow os-host-overflow-y">
+            <div class="os-resize-observer-host observed">
+                <div class="os-resize-observer"
+                     style="left: 0px; right: auto"></div>
+            </div>
+            <div class="os-padding">
+                <div class="os-viewport os-viewport-native-scrollbars-invisible"
+                     style="overflow-y: scroll">
+                    <div class="os-content"
+                         style="padding: 0px; height: 100%; width: 100%">
+                        <div class="main-view-container__scroll-node-child-spacer"></div>
+                        <div class="search-bar">
+
+
+                            <form action="/Home/TimKiem" method="get">
+                                <input class="Type__TypeElement-goli3j-0 iTnRIT QO9loc33XC50mMRUCIvf"
+                                       maxlength="800"
+                                       placeholder="Bạn muốn nghe gì?"
+                                       type="search" name="SearchString" />
+                                <button class="t2K4_iLmAyDtH7mcT5Wy" type="submit">
+                                    <span class="H6jh9Xd7DNOq3NsLDmCB">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                </button>
+                            </form>
+
+                        </div>
+                        <div class="main-view-container__scroll-node-child"
+                             style="
+                          min-height: calc(((100vh - 64px) - 90px) - 519px);
+                        ">
+                            <main tabindex="-1" aria-label="Spotify – Tìm kiếm">
+                                <div class="contentSpacing" id="searchPage">
+                                    <div data-testid="grid-container"
+                                         class="iKwGKEfAfW7Rkx2_Ba4E khkfPsJuVBQyL_5cLT7y"
+                                         style="
+                                --column-width: 167px;
+                                --column-count: 4;
+                                --grid-gap: 24px;
+                              ">
+                                        <div class="CCi1L2OQvgdZvxkRHeKE">
+                                            <div class="M7LKuAFiIKaigK0fVguF">
+                                                <section class="QyANtc_r7ff_tqrf5Bvc"
+                                                         data-testid="component-shelf"
+                                                         aria-label="Duyệt tìm tất cả">
+                                                    <div class="q8AZzDc_1BumBHZg0tZb">
+                                                        <div class="OMuRYOdpUbGif12_lRJl">
+                                                            <div class="onVWL7MW4PW9FyVajBAc">
+                                                                <h2 class="Type__TypeElement-goli3j-0 eJZNLq MfVrtIzQJ7iZXfRWg6eM"
+                                                                    tabindex="-1">
+                                                                    Duyệt tìm tất cả
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-testid="grid-container"
+                                                         class="iKwGKEfAfW7Rkx2_Ba4E Z4InHgCs2uhk0MU93y_a BtbiwMynlB4flsYu_hA2"
+                                                         style="
+                                        --column-width: 185px;
+                                        --column-count: 6;
+                                        --grid-gap: 24px;
+                                      ">
+                                                        @foreach (var item in ViewBag.Chude)
+                                                        {
+                                                            <a draggable="false"
+                                                               class="Em2LrSSfvrgXQoajs6cm"
+                                                               style="
+                                          background-color: @item.Color;
+                                        ">
+                                                                <div>
+                                                                    <img aria-hidden="false"
+                                                                         draggable="false"
+                                                                         loading="lazy"
+                                                                         src="~/image/@item.Picture"
+                                                                         alt=""
+                                                                         class="mMx2LUixlnN_Fu45JpFB tV9cjMpTPaykKsn2OVsw Yn2Ei5QZn19gria6LjZj" /><span class="Type__TypeElement-goli3j-0 bcTfIx i2yp6pOoZpYZLd5QWguN">@item.TenCD</span>
+                                                                    </div>
+                                                                </a>
+                                                            }
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
