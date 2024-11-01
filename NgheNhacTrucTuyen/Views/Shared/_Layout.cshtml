@@ -2,10 +2,9 @@
 
 @{
     DBcontextDataContext context = new DBcontextDataContext();
-
-    bool islogin = true ;
-    bool adm = true;
-
+    bool islogin = Session["islogin"] != null && (bool)Session["islogin"];
+    bool adm = Session["adm"] != null && (bool)Session["adm"];
+    string Ten = Session["Ten"] != null ? Session["Ten"].ToString() : "";
 
 }
 
@@ -65,7 +64,7 @@
 
                             <div class="head-option">
                                 <button class="btn-dangky">
-                                    chào @User.Identity.Name
+                                    chào @Ten
                                 </button>
                                 <button data-testid="login-button" class="btn-dangnhap">
                                     <a href="/login/logout"><span class="sp-dangnhap encore-inverted-light-set">Đăng xuất</span></a>

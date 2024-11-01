@@ -1,19 +1,16 @@
 ﻿using NgheNhacTrucTuyen.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Web;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
-using NgheNhacTrucTuyen.Models;
 
 namespace NgheNhacTrucTuyen.Controllers
 {
     public class loginController : Controller
     {
-        public static object Enconding { get; private set; }
-
+        DBcontextDataContext db = new DBcontextDataContext();
         [HttpGet]
         public ActionResult Login()
         {
@@ -21,21 +18,36 @@ namespace NgheNhacTrucTuyen.Controllers
         }
 
         [HttpPost]
-
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(string emai, string password)
         {
-            DBcontextDataContext context = new DBcontextDataContext();
-            bool data = context.accounts.Any(x => x.Email == email && x.PassWord == password);
-            account a = context.accounts.FirstOrDefault(x => x.Email == email && x.PassWord == password);
-            if (data)
+
+            var adminUser = db.accounts.FirstOrDefault(x => x.Email == emai && x.PassWord == password && x.Role == 0);
+            if (adminUser != null)
             {
-                FormsAuthentication.SetAuthCookie(a.Ten, false);
+                Session["islogin"] = true;
+                Session["adm"] = false;
+                Session["Ten"] = adminUser.Ten;
+                return RedirectToAction("Index", "Home");
+
+
+            }
+
+          
+            var regularUser = db.accounts.FirstOrDefault(x => x.Email == emai && x.PassWord == password && x.Role == 1);
+            if (regularUser != null)
+            {
+                Session["islogin"] = true;
+                Session["adm"] = true;
+                Session["Ten"] = regularUser.Ten;               
                 return RedirectToAction("Index", "Home");
             }
 
+           
             ViewBag.error = "Tên đăng nhập hoặc mật khẩu không đúng";
             return View();
         }
+
+
         [HttpGet]
         public ActionResult SignUp()
         {
@@ -45,37 +57,38 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult SignUp(string email, string psw, string ten)
         {
-
-            if (ModelState.IsValid)
+            DBcontextDataContext context = new DBcontextDataContext();
+            var check = context.accounts.FirstOrDefault(s => s.Email == email);
+            if (check == null)
             {
-                DBcontextDataContext context = new DBcontextDataContext();
-                account a = new account();
-                a.Email = Request.Form["email"];
-                a.PassWord = Request.Form["psw"];
-                a.Ten = Request.Form["ten"];
-                a.Role = int.Parse("0");
-                var check = context.accounts.FirstOrDefault(s => s.Email == email);
-                if (check == null)
+                account newAccount = new account
                 {
-                    context.accounts.InsertOnSubmit(a);
-                    context.SubmitChanges();
-                    ViewBag.Sucess = "Đăng ký thành công";
-
-                }
-                else
-                {
-                    ViewBag.erro = "Email đã tồn tại";
-                    return View();
-                }
+                    Email = email,
+                    PassWord = psw,
+                    Ten = ten,
+                    Role = 0 
+                };
+                context.accounts.InsertOnSubmit(newAccount);
+                context.SubmitChanges();
+                ViewBag.Success = "Đăng ký thành công";
             }
-
+            else
+            {
+                ViewBag.erro = "Email đã tồn tại";
+            }
             return View();
         }
+
+
         public ActionResult Logout()
-        {
+        {    
             FormsAuthentication.SignOut();
-            return View("Login");
+            Session["islogin"] = false;
+            Session["adm"] = false;
+            Session["Ten"] = null; 
+            return RedirectToAction("Login");
         }
+
 
     }
 }
