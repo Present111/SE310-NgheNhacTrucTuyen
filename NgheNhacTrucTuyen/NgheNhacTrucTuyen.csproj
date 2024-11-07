@@ -147,7 +147,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="image\logo.jpg" />
-    <Content Include="image\spotify.jpg" />
+    <Content Include="image\spotify.gif" />
     <Content Include="image\tải xuống.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
