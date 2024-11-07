@@ -7,40 +7,52 @@ using System.Web.Mvc;
 
 namespace NgheNhacTrucTuyen.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        DBcontextDataContext context = new DBcontextDataContext();
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            DBcontextDataContext context = new DBcontextDataContext();
+          
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.ToList();
             ViewBag.jointable = nhac;
             return View();
         }
+
+        [AllowAnonymous]
+        [HttpGet]
         public ActionResult Index1()
         {
-            DBcontextDataContext context = new DBcontextDataContext();
+         
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.ToList();
             ViewBag.jointable = nhac;
             return PartialView("Index1");
         }
+
+
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Search()
         {
-            DBcontextDataContext context = new DBcontextDataContext();
+         
             ViewBag.Chude = context.ChuDes.ToList();
 
             return PartialView("Search");
         }
+
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult TimKiem(string SearchString)
         {
-            DBcontextDataContext context = new DBcontextDataContext();
+           
             List<Nhac> a = context.Nhacs.ToList();
             var link = from l in a select l;
             if (!string.IsNullOrEmpty(SearchString))
@@ -49,5 +61,45 @@ namespace NgheNhacTrucTuyen.Controllers
             }
             return View(link);
         }
+
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Library()
+        {
+            if (Session["Email"] != null)
+            {
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+                ViewBag.Thuvien = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                return PartialView("Library");
+                
+            }
+            ViewBag.Thuvien = new List<PlayList>(); 
+            ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Playlist(string tenPL)
+        {
+            if (Session["Email"] != null)
+            {
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+                List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).ToList();
+                ViewBag.playlist = PL;
+                ViewBag.s = PL.Count() - 1;
+                ViewBag.tk = a;
+                ViewBag.tkten = a.Ten;
+                ViewBag.ten = tenPL;
+                return View();
+
+            }
+            ViewBag.playlist=new List<PlayList>();
+            ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
+            return View();
+        }
+
+
     }
 }

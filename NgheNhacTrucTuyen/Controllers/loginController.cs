@@ -27,6 +27,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 Session["islogin"] = true;
                 Session["adm"] = false;
                 Session["Ten"] = adminUser.Ten;
+                Session["Email"] = adminUser.Email;
                 return RedirectToAction("Index", "Home");
 
 
@@ -38,7 +39,8 @@ namespace NgheNhacTrucTuyen.Controllers
             {
                 Session["islogin"] = true;
                 Session["adm"] = true;
-                Session["Ten"] = regularUser.Ten;               
+                Session["Ten"] = regularUser.Ten;
+                Session["Email"] = regularUser.Email;
                 return RedirectToAction("Index", "Home");
             }
 
@@ -85,7 +87,8 @@ namespace NgheNhacTrucTuyen.Controllers
             FormsAuthentication.SignOut();
             Session["islogin"] = false;
             Session["adm"] = false;
-            Session["Ten"] = null; 
+            Session["Ten"] = null;
+            Session["Email"] = null;
             return RedirectToAction("Login");
         }
 

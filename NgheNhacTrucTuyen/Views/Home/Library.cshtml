@@ -1,0 +1,133 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div class="under-main-view"></div>
+        <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden main-view-container__scroll-node os-host-transition os-host-overflow os-host-overflow-y">
+            <div class="os-resize-observer-host observed">
+                <div class="os-resize-observer"
+                     style="left: 0px; right: auto"></div>
+            </div>
+            <div class="os-padding">
+                <div class="os-viewport os-viewport-native-scrollbars-invisible"
+                     style="overflow-y: scroll">
+                    <div class="os-content"
+                         style="padding: 0px; height: 100%; width: 100%">
+                        <div class="main-view-container__scroll-node-child-spacer"></div>
+                        <div class="main-view-container__scroll-node-child"
+                             style="min-height: calc(((100vh - 64px) - 90px) - 519px)">
+                            <main tabindex="-1" aria-label="Spotify – Thư viện">
+                                <section class="contentSpacing">
+                                    <div class="fLqEiE5HwKr9eFCbJgeu">
+                                        <h1 class="Type__TypeElement-goli3j-0 bcTfIx">
+                                            Playlist
+                                        </h1>
+                                        <div class="VuUpAVlUW_OfMfOcDEID"></div>
+                                    </div>
+                                    <div class="">
+                                        <div data-testid="grid-container"
+                                             class="iKwGKEfAfW7Rkx2_Ba4E PmW2UCL9vlTcNPD7J0KJ"
+                                             style="
+                                --column-width: 185px;
+                                --column-count: 6;
+                                --grid-gap: 24px;
+                              ">
+                                            @*<div class="HkbHLcqgUfXruL5xVi28 NGSgqDuaOH2VDApkzoxN ZzUvBwE6uj5CAU2pjlQX">
+                                                    <div draggable="true"
+                                                         class="kVHQenQh3yKEk2n7Ere4">
+                                                        <div class="DY2YrJ5MH3ddIhZGORBq">
+                                                            <div class="ZXOyJPokUIObMnvTOJvc"></div>
+                                                        </div>
+                                                        <div class="sm7ZnbOO1Zfg9cupYgPN">
+                                                            <a draggable="false"
+                                                               title="Bài hát đã thích"
+                                                               class="Nqa6Cw3RkDMV8QnYreTr"
+                                                               dir="auto"
+                                                               href="/user/xktxpjtdm8dc7z0i6r2ysb3pc/collection">
+                                                                <div class="Type__TypeElement-goli3j-0 dQBgxX nk6UgB4GUYNoAcPtAQaG">
+                                                                    Bài hát đã thích
+                                                                </div>
+                                                            </a>
+                                                            <div class="Type__TypeElement-goli3j-0 gPOKDu Za_uNH8nTZ0qCuIqbPLZ">
+                                                                <div class="xhPzQCyks9pfizJj_PVK">
+                                                                    0 Bài hát đã thích
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="_gB1lxCfXeR8_Wze5Cx9"
+                                                             data-testid="herocard-click-handler"></div>
+                                                    </div>
+                                                </div>*@
+
+                                            @foreach (var item in ViewBag.Thuvien)
+                                            {
+                                                <div class="LunqxlFIupJw_Dkx6mNx">
+                                                    <div draggable="true"
+                                                         class="XiVwj5uoqqSFpS4cYOC6">
+                                                        <div class="xBV4XgMq0gC5lQICFWY_">
+                                                            <div class="g4PZpjkqEh5g7xDpCr2K">
+                                                                <div class="">
+                                                                    <img aria-hidden="false"
+                                                                         draggable="false"
+                                                                         loading="lazy"
+                                                                         src="https://i.scdn.co/image/ab67616d00001e025437012c3f780b523596d511"
+                                                                         data-testid="card-image"
+                                                                         alt=""
+                                                                         class="mMx2LUixlnN_Fu45JpFB SKJSok3LfyedjZjujmFt yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="woJQ5t2YiaJhjTv_KE7p">
+                                                                <div class="PFgcCoJSWC3KjhZxHDYH">
+                                                                    <button data-testid="play-button"
+                                                                            aria-label="Phát Best of Madihu"
+                                                                            class="Button-qlcn5g-0 cKBTSk">
+                                                                        <i class="fa-solid fa-circle-play fa-3x"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="E1N1ByPFWo4AJLHovIBQ">
+                                                            <a draggable="false"
+                                                               title="chill"
+                                                               class="Nqa6Cw3RkDMV8QnYreTr"
+                                                               dir="auto"
+                                                               href="/Home/Playlist?tenPL=@item.TenPL">
+                                                                <div class="Type__TypeElement-goli3j-0 iCdlru nk6UgB4GUYNoAcPtAQaG">
+                                                                    @item.TenPL
+
+
+                                                                </div>
+                                                            </a>
+
+                                                        </div>
+                                                        <div class="tsv7E_RBBw6v0XTQlcRo"
+                                                             data-testid="card-click-handler"></div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </section>
+                            </main>
+                        </div>
+                        <div class="main-view-container__mh-footer-container">
+                            <div class="footerContentSpacing">
+                                <div data-testid="grid-container"
+                                     class="iKwGKEfAfW7Rkx2_Ba4E"
+                                     style="
+                            --column-width: 178px;
+                            --column-count: 4;
+                            --grid-gap: 24px;
+                          "></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

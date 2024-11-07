@@ -195,6 +195,8 @@
     <Content Include="Views\login\SignUp.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\TimKiem.cshtml" />
+    <Content Include="Views\Home\Library.cshtml" />
+    <Content Include="Views\Home\Playlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
