@@ -1,0 +1,68 @@
+﻿@model NgheNhacTrucTuyen.Models.Nhac
+
+
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div style="margin-top: 60px;">
+
+        </div>
+        <div>
+            <h4>Nhac</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Tên bài hát</label>
+                </dt>
+
+                <dd>
+                    @ViewBag.detail.TenBH
+                </dd>
+                <dt>
+                    <label>Ảnh</label>
+                </dt>
+
+                <dd>
+                    <img src="~/image/@ViewBag.detail.image" width="100px" height="100px" />
+                </dd>
+                <dt>
+                    <label>Ngày Phát hành</label>
+                </dt>
+
+                <dd>
+                    @ViewBag.detail.NgayPH
+                </dd>
+
+                <dt>
+                    <label>Ca sĩ</label>
+                </dt>
+
+                <dd>
+                    @ViewBag.detail.CaSi.TenCS
+                </dd>
+
+                <dt>
+                    <label>Thể loại</label>
+                </dt>
+
+                <dd>
+                    @ViewBag.detail.TheLoai.TenTL
+                </dd>
+
+                <dt>
+                    <label>Chủ đề</label>
+                </dt>
+
+                <dd>
+                    @ViewBag.detail.ChuDe.TenCD
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            <a href="/QLBH/Edit/@ViewBag.detail.MaBH"></a>
+
+        </p>
+
+    </div>
+</div>

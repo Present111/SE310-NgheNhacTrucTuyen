@@ -7,15 +7,14 @@ using System.Web.Mvc;
 
 namespace NgheNhacTrucTuyen.Controllers
 {
-    [Authorize]
+  
     public class HomeController : Controller
     {
         DBcontextDataContext context = new DBcontextDataContext();
 
-        [AllowAnonymous]
+        [HttpGet]
         public ActionResult Index()
         {
-          
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.ToList();
@@ -23,7 +22,7 @@ namespace NgheNhacTrucTuyen.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        
         [HttpGet]
         public ActionResult Index1()
         {
@@ -37,7 +36,7 @@ namespace NgheNhacTrucTuyen.Controllers
 
 
 
-        [AllowAnonymous]
+      
         [HttpGet]
         public ActionResult Search()
         {
@@ -48,7 +47,7 @@ namespace NgheNhacTrucTuyen.Controllers
         }
 
 
-        [AllowAnonymous]
+      
         [HttpGet]
         public ActionResult TimKiem(string SearchString)
         {
@@ -63,7 +62,7 @@ namespace NgheNhacTrucTuyen.Controllers
         }
 
 
-        [AllowAnonymous]
+      
         [HttpGet]
         public ActionResult Library()
         {
@@ -79,7 +78,6 @@ namespace NgheNhacTrucTuyen.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public ActionResult Playlist(string tenPL)
         {

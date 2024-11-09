@@ -86,47 +86,47 @@
                     </div>
                     <ul class="RSg3qFREWrqWCuUvDpJR">
                         <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                            <label aria-current="page"
+                            <a href="/Home" aria-current="page"
                                    class="link-subtle ATUzFKub89lzvkmvhpyE"
                                    draggable="false"
-                                   onclick="viewindex()">
+                                  >
                                 <i class="fa-solid fa-house"></i>
                                 <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Trang chủ</span>
-                            </label>
+                            </a>
                         </li>
                         <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                            <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                            <a href="/Home/Search" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                    draggable="false"
-                                   onclick="viewsearch()">
+                                   >
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Tìm kiếm</span>
-                            </label>
+                            </a>
                         </li>
                         <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                            <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                            <a href="/Home/Library" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                    draggable="false"
-                                   onclick="viewlibrary()">
+                                   >
                                 <i class="fa-solid fa-swatchbook"></i>
                                 <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Thư viện</span>
-                            </label>
+                            </a>
                         </li>
                         @{ if (islogin == true && adm == true)
                             {
                                 <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                                    <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                    <a href="/QLBH/DSBaiHat" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                            draggable="false"
-                                           onclick="viewQLBH()">
+                                           >
                                         <i class="fa-solid fa-list-check"></i>
                                         <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Quản lý bài hát</span>
-                                    </label>
+                                    </a>
                                 </li>
                                 <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                                    <label class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                    <a href="/QLTK/DSTaiKhoan" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                            draggable="false"
-                                           onclick="viewQLTK()">
+                                           >
                                         <i class="fa-solid fa-user"></i>
                                         <span class="Type__TypeElement-goli3j-0 hkMLug ellipsis-one-line">Quản lý tài khoản</span>
-                                    </label>
+                                    </a>
                                 </li>
                             }
                         }
@@ -406,7 +406,9 @@
                     alert('Lỗi!');
                 }
             });
-        } function viewQLTK() {
+        }
+
+        function viewQLTK() {
             $.ajax({
                 type: "GET",
                 url: "/QLTK/DSTaiKhoan",

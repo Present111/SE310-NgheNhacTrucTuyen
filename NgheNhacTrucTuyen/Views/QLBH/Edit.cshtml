@@ -1,0 +1,89 @@
+﻿@model NgheNhacTrucTuyen.Models.Nhac
+
+@{
+    Layout = null;
+}
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div style="margin-top: 64px;">
+
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h1>Chỉnh sửa bài hát</h1>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaBH)
+
+                <div class="form-group">
+                    <label>Tên bài hát</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenBH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenBH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>File nhạc</label>
+                    <div class="col-md-10">
+                        <input type="text" value="@ViewBag.nhac.Files" readonly />
+                        @Html.EditorFor(model => model.Files, new { htmlAttributes = new { @type = "file" } })
+                        @Html.ValidationMessageFor(model => model.Files, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ảnh</label>
+                    <div class="col-md-10">
+                        <input type="text" value="@ViewBag.nhac.image" readonly />
+                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file" } })
+
+                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày phát hành</label>
+                    <div class="col-md-10">
+                        <input type="text" value="@ViewBag.nhac.NgayPH" readonly />
+                        @Html.EditorFor(model => model.NgayPH, new { htmlAttributes = new { @type = "date", required = true } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tên ca sĩ</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaCS", ViewBag.Casis as SelectList, "---chọn ca sĩ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaCS, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Thể loại</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaTL", ViewBag.Theloais as SelectList, "---chọn thể loại---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaTL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Chủ đề</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaCD", ViewBag.Chudes as SelectList, "---chọn chủ đề---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Lưu" class="btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

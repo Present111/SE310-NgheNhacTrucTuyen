@@ -121,8 +121,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CaSiController.cs" />
+    <Compile Include="Controllers\ChuDeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\QLTKController.cs" />
+    <Compile Include="Controllers\QLBHController.cs" />
+    <Compile Include="Controllers\TheLoaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +202,16 @@
     <Content Include="Views\Home\TimKiem.cshtml" />
     <Content Include="Views\Home\Library.cshtml" />
     <Content Include="Views\Home\Playlist.cshtml" />
+    <Content Include="Views\QLBH\DSBaiHat.cshtml" />
+    <Content Include="Views\QLBH\Create.cshtml" />
+    <Content Include="Views\QLBH\Edit.cshtml" />
+    <Content Include="Views\QLBH\Detail.cshtml" />
+    <Content Include="Views\CaSi\CreateCS.cshtml" />
+    <Content Include="Views\CaSi\EditCS.cshtml" />
+    <Content Include="Views\ChuDe\CreateCD.cshtml" />
+    <Content Include="Views\ChuDe\EditCD.cshtml" />
+    <Content Include="Views\TheLoai\CreateTL.cshtml" />
+    <Content Include="Views\TheLoai\EditTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

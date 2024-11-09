@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div style="margin-top: 60px;">
+
+        </div>
+        <button class="tablink" onclick="openPage('Home', this, 'green')" id="defaultOpen">Danh sách bài hát</button>
+        <button class="tablink" onclick="openPage('News', this, 'green')">Ca sĩ</button>
+        <button class="tablink" onclick="openPage('Contact', this, 'green')">Thể loại</button>
+        <button class="tablink" onclick="openPage('About', this, 'green')">Chủ đề</button>
+
+        <div id="Home" class="tabcontent">
+            <button class="addbaihat" type="submit">
+                @Html.ActionLink("Thêm bài hát", "Create", "QLBH")
+            </button>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+
+                                <th>Tên Bài Hát</th>
+
+                                <th>Ảnh</th>
+                                <th>Ngày phát hành</th>
+                                <th>Ca Sĩ</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.baihats)
+                            {
+                                <tr>
+                                    <td style="vertical-align: middle">@item.TenBH</td>
+                                    <td style="vertical-align: middle;">
+                                        <img src="/image/@item.image" width="100" height="100" />
+                                    </td>
+                                    <td style="vertical-align: middle">@item.NgayPH</td>
+                                    <td style="vertical-align: middle">@item.CaSi.TenCS</td>
+                                    <td style="vertical-align: middle">
+
+                                        <button onclick="EditBH('@item.MaBH')" style="margin-right: 10px;"><i class="fa-solid fa-pen-to-square"></i></button>
+                                        <a href="/QLBH/Detail/@item.MaBH" style="margin-right: 10px;"> Chi tiết</a>
+                                        <a href="/QLBH/Delete/@item.MaBH"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="News" class="tabcontent">
+            <button class="addbaihat" type="submit">
+                @Html.ActionLink("Thêm ca sĩ", "CreateCS", "CaSi")
+            </button>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã ca sĩ</th>
+                                <th>Tên ca sĩ</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Casis)
+                            {
+                                <tr>
+
+                                    <td style="vertical-align: middle">@item.MaCS</td>
+                                    <td style="vertical-align: middle">@item.TenCS</td>
+                                    <td style="vertical-align: middle">
+                                        <a href="/CaSi/EditCS/@item.MaCS" style="margin-right: 15px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="/CaSi/DeleteCS/@item.MaCS"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="Contact" class="tabcontent">
+            <button class="addbaihat" type="submit">
+                @Html.ActionLink("Thêm thể loại", "CreateTL", "TheLoai")
+            </button>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã thể loại</th>
+                                <th>Thể loại</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.theloais)
+                            {
+                                <tr>
+                                    <td style="vertical-align: middle">@item.MaTL</td>
+                                    <td style="vertical-align: middle">@item.TenTL</td>
+                                    <td style="vertical-align: middle">
+                                        <a href="/TheLoai/EditTL/@item.MaTL" style="margin-right: 15px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="/TheLoai/DeleteTL/@item.MaTL"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="About" class="tabcontent">
+            <button class="addbaihat" type="submit">
+                @Html.ActionLink("Thêm chủ đề", "CreateCD", "ChuDe")
+            </button>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã chủ đề</th>
+                                <th>Tên chủ đề</th>
+                                <th>Ảnh</th>
+                                <th>Màu chủ đề</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.chudes)
+                            {
+                                <tr>
+                                    <td style="vertical-align: middle">@item.MaCD</td>
+                                    <td style="vertical-align: middle">@item.TenCD</td>
+                                    <td style="vertical-align: middle"><img src="/image/@item.Picture" width="100" height="100" /></td>
+                                    <td style="vertical-align: middle">@item.Color</td>
+                                    <td style="vertical-align: middle">
+                                        <a href="/ChuDe/EditCD/@item.MaCD" style="margin-right: 15px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="/ChuDe/DeleteCD/@item.MaCD"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="~/Scripts/Casi.js"></script>
+        <script>
+            function openPage(pageName, elmnt, color) {
+                // Hide all elements with class="tabcontent" by default */
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove the background color of all tablinks/buttons
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.backgroundColor = "";
+                }
+
+                // Show the specific tab content
+                document.getElementById(pageName).style.display = "block";
+
+                // Add the specific color to the button used to open the tab content
+                elmnt.style.backgroundColor = color;
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+        <script>
+            function EditBH(mabh) {
+                $.ajax({
+                    type: "GET",
+                    url: "/QLBH/Edit/" + mabh,
+                    success: function (data) {
+                        $('.Root__main-view').replaceWith(data);
+                    },
+                    error: function (data) {
+                        alert('Lỗi!');
+                    }
+                });
+            }
+        </script>
+    </div>
+</div>
