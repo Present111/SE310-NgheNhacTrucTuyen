@@ -11,12 +11,13 @@ namespace WebApplication1.Controllers
     public class CaSiController : Controller
     {
 
-        DBcontextDataContext context = new DBcontextDataContext();
+        
 
         [Route("CreateCS")]
         public ActionResult CreateCS()
-        {    
-                  if (Request.Form.Count > 0)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            if (Request.Form.Count > 0)
             {
                 CaSi ca = new CaSi();
                 ca.TenCS = Request.Form["TenCS"];

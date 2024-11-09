@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NgheNhacTrucTuyen.Models.account>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="Root__main-view">
+    <div class="main-view-container">
+        <div style="margin-top: 64px;">
+
+        </div>
+        <button class="addbaihat" type="submit">
+            @Html.ActionLink("Thêm tài khoản mới", "Createtk", "QLTK")
+
+        </button>
+
+        <table class="table">
+            <tr>
+                <th>
+                    <label>Email</label>
+                </th>
+                <th>
+                    <label>Password</label>
+                </th>
+                <th>
+                    <label>Quyền</label>
+                </th>
+                <th>
+                    <label>Tên</label>
+                </th>
+                <th>
+                    <label>Tùy chọn</label>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in ViewBag.taikhoan)
+            {
+                <tr>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.PassWord
+                    </td>
+                    <td>
+                        @item.Role
+                    </td>
+                    <td>
+                        @item.Ten
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a href="/QLTK/Edittk/@item.MaTK" style="margin-right: 15px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/QLTK/Deletetk/@item.MaTK"><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

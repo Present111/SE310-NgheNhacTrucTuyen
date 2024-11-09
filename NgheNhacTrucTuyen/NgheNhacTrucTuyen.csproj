@@ -212,6 +212,9 @@
     <Content Include="Views\ChuDe\EditCD.cshtml" />
     <Content Include="Views\TheLoai\CreateTL.cshtml" />
     <Content Include="Views\TheLoai\EditTL.cshtml" />
+    <Content Include="Views\QLTK\DSTaiKhoan.cshtml" />
+    <Content Include="Views\QLTK\CreateTK.cshtml" />
+    <Content Include="Views\QLTK\EditTK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

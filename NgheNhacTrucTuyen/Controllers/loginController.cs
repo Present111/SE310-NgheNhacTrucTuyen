@@ -10,7 +10,7 @@ namespace NgheNhacTrucTuyen.Controllers
 {
     public class loginController : Controller
     {
-        DBcontextDataContext db = new DBcontextDataContext();
+       
         [HttpGet]
         public ActionResult Login()
         {
@@ -20,7 +20,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult Login(string emai, string password)
         {
-
+            DBcontextDataContext db = new DBcontextDataContext();
             var adminUser = db.accounts.FirstOrDefault(x => x.Email == emai && x.PassWord == password && x.Role == 0);
             if (adminUser != null)
             {

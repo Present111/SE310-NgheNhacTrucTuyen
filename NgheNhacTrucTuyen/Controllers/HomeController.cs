@@ -10,11 +10,12 @@ namespace NgheNhacTrucTuyen.Controllers
   
     public class HomeController : Controller
     {
-        DBcontextDataContext context = new DBcontextDataContext();
+        
 
         [HttpGet]
         public ActionResult Index()
         {
+            DBcontextDataContext context = new DBcontextDataContext();
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.ToList();
@@ -26,7 +27,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Index1()
         {
-         
+            DBcontextDataContext context = new DBcontextDataContext();
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.ToList();
@@ -40,7 +41,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Search()
         {
-         
+            DBcontextDataContext context = new DBcontextDataContext();
             ViewBag.Chude = context.ChuDes.ToList();
 
             return PartialView("Search");
@@ -51,7 +52,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult TimKiem(string SearchString)
         {
-           
+            DBcontextDataContext context = new DBcontextDataContext();
             List<Nhac> a = context.Nhacs.ToList();
             var link = from l in a select l;
             if (!string.IsNullOrEmpty(SearchString))
@@ -66,6 +67,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Library()
         {
+            DBcontextDataContext context = new DBcontextDataContext();
             if (Session["Email"] != null)
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
@@ -81,6 +83,7 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Playlist(string tenPL)
         {
+            DBcontextDataContext context = new DBcontextDataContext();
             if (Session["Email"] != null)
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());

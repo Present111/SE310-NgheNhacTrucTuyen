@@ -14,12 +14,13 @@ namespace WebApplication1.Controllers
 {
     public class QLBHController : Controller
     {
-        DBcontextDataContext context = new DBcontextDataContext();
+        
 
 
         [HttpGet]
         public ActionResult DSBaiHat()
         {
+            DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.ToList();
             ViewBag.baihats = baihat;
             ViewBag.Casis = context.CaSis.ToList();
@@ -32,6 +33,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            DBcontextDataContext context = new DBcontextDataContext();
             ViewBag.Casis = new SelectList(context.CaSis, "MaCS", "TenCS");
             ViewBag.Theloais = new SelectList(context.TheLoais, "MaTL", "TenTL");
             ViewBag.Chudes = new SelectList(context.ChuDes, "MaCD", "TenCD");
@@ -40,7 +42,8 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase filenhac, HttpPostedFileBase fileanh)
-        { 
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
                 Nhac p = new Nhac();
@@ -78,7 +81,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-        
+            DBcontextDataContext context = new DBcontextDataContext();
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
 
             if (Request.Form.Count == 0)
@@ -94,7 +97,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Edit(int id, HttpPostedFileBase filenhac, HttpPostedFileBase fileanh)
         {
-           
+            DBcontextDataContext context = new DBcontextDataContext();
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
 
             if (Request.Form.Count == 0)
@@ -128,8 +131,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Delete(int id)
         {
-          
 
+            DBcontextDataContext context = new DBcontextDataContext();
             var data = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             if (data != null)
             {
@@ -145,7 +148,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult ThemPlaylist(string tenPL)
         {
-        
+            DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Ten == User.Identity.Name);
             var P1 = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList();
             if (P1.Any(x => x.TenPL.Equals(tenPL)))
@@ -168,7 +171,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Detail(int id)
         {
-           
+            DBcontextDataContext context = new DBcontextDataContext();
             Nhac a = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             ViewBag.detail = a;
             return View();
@@ -179,7 +182,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult themvaoPL(int id, string TenPL)
         {
-         
+            DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Ten == User.Identity.Name);
             PlayList p = new PlayList();
             p.Matk = a.MaTK;
