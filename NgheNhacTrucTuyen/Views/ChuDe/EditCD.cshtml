@@ -1,4 +1,7 @@
 ﻿@model NgheNhacTrucTuyen.Models.ChuDe
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="Root__main-view">
     <div class="main-view-container">
@@ -18,7 +21,7 @@
                 <div class="form-group">
                     <label>Tên chủ đề</label>
                     <div class="col-md-10">
-                      
+
                         @Html.EditorFor(model => model.TenCD, new { htmlAttributes = new { @class = "form-control", required = true } })
                         @Html.ValidationMessageFor(model => model.TenCD, "", new { @class = "text-danger" })
                     </div>
@@ -27,7 +30,7 @@
                 <div class="form-group">
                     <label>Ảnh chủ đề</label>
                     <div class="col-md-10">
-                    
+
                         @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @type = "file", required = true } })
                         @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
                     </div>

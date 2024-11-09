@@ -1,4 +1,7 @@
 ﻿@model NgheNhacTrucTuyen.Models.TheLoai
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="Root__main-view">
     <div class="main-view-container">
@@ -32,7 +35,7 @@
         }
 
         <div>
-            @Html.ActionLink("Back to List", "DSBaiHat","QLBH")
+            @Html.ActionLink("Back to List", "DSBaiHat", "QLBH")
         </div>
     </div>
 </div>

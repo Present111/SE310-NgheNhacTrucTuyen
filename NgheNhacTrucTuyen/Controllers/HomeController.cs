@@ -10,8 +10,7 @@ namespace NgheNhacTrucTuyen.Controllers
   
     public class HomeController : Controller
     {
-        
-
+      
         [HttpGet]
         public ActionResult Index()
         {

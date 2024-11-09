@@ -10,7 +10,7 @@ using System.Text;
 using NgheNhacTrucTuyen.Models;
 
 
-namespace WebApplication1.Controllers
+namespace NgheNhacTrucTuyen.Controllers
 {
     public class QLBHController : Controller
     {
