@@ -242,6 +242,9 @@
     <Content Include="Views\QLTK\DSTaiKhoan.cshtml" />
     <Content Include="Views\QLTK\CreateTK.cshtml" />
     <Content Include="Views\QLTK\EditTK.cshtml" />
+    <Content Include="Views\Home\BaiHat.cshtml" />
+    <Content Include="Views\Home\BaiHatYeuThich.cshtml" />
+    <Content Include="Views\Home\ThemPL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

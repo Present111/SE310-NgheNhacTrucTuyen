@@ -100,6 +100,50 @@ namespace NgheNhacTrucTuyen.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ThemYeuYhich(int id)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            PlayList p = new PlayList();
+            p.Matk = a.MaTK;
+            p.MaBH = id;
+            p.TenPL = "Bài hát yêu thích";
+            context.PlayLists.InsertOnSubmit(p);
+            context.SubmitChanges();
+            return RedirectToAction("Baihat", "Home", new { id = id });
+        }
+
+        [HttpGet]
+        public ActionResult BaiHat(int id)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+            Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
+            ViewBag.baihat = n;
+            var nhac = context.Nhacs.Where(x => x.MaCS == n.MaCS).ToList();
+            ViewBag.list = nhac;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult BaiHatYeuThich()
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == "Bài hát yêu thích").ToList();
+            ViewBag.playlist = PL;
+            ViewBag.s = PL.Count();
+            ViewBag.tk = a;
+            return PartialView("BaiHatYeuThich");
+        }
+
+        [HttpGet]
+        public ActionResult ThemPL()
+        {
+            return PartialView("ThemPL");
+        }
 
     }
 }

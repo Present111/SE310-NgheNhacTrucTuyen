@@ -149,7 +149,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult ThemPlaylist(string tenPL)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Ten == User.Identity.Name);
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
             var P1 = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList();
             if (P1.Any(x => x.TenPL.Equals(tenPL)))
             {
@@ -183,14 +183,14 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult themvaoPL(int id, string TenPL)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Ten == User.Identity.Name);
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
             PlayList p = new PlayList();
             p.Matk = a.MaTK;
             p.MaBH = id;
             p.TenPL = TenPL;
             context.PlayLists.InsertOnSubmit(p);
             context.SubmitChanges();
-            ViewBag.ok1 = "them thành cong";
+            ViewBag.ok1 = "Thên thành công";
             return RedirectToAction("Baihat", "Home", new { id = id });
         }
 

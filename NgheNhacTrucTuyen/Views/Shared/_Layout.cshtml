@@ -135,9 +135,8 @@
                         <div class="EY6S7vlkxB7SF_OjjF_Y">
                             <div class="GlueDropTarget GlueDropTarget--albums GlueDropTarget--tracks GlueDropTarget--local-tracks GlueDropTarget--episodes">
 
-                                <button type="button" id="mybtn"
+                                <a href="/Home/ThemPL" type="button" id="mybtn"
                                         class="IPVjkkhh06nan7aZK7Bx"
-                                        onclick="viewThemPL()"
                                         data-testid="create-playlist-button">
                                     <div class="Bwc9jlVb7HWs8JJupnBB">
                                         <div class="q3ABXYJT9JZIzXOOtVuO">
@@ -146,12 +145,11 @@
                                     </div>
                                     <span class="Type__TypeElement-goli3j-0 hkMLug J4xXuqyaJnnwS6s2p3ZB standalone-ellipsis-one-line">Tạo playlist</span>
 
-                                    </a>
+                                </a>
                             </div>
                             <div class="GlueDropTarget GlueDropTarget--tracks">
-                                <label class="r9YzlaAPnM2LGK97GSfa"
-                                       draggable="false"
-                                       onclick="viewBHYT()">
+                                <a href="/Home/BaiHatYeuThich" class="r9YzlaAPnM2LGK97GSfa"
+                                       draggable="false">
                                     <div class="bFQ9NOIn1bDs8tTH0ebQ">
                                         <div class="Nd_DeCpszONzyaLe5Wd1">
                                             <i class="fa-solid fa-heart Svg-ytk21e-0 eqtHWV"></i>
@@ -159,7 +157,7 @@
                                     </div>
                                     <span class="Type__TypeElement-goli3j-0 hkMLug standalone-ellipsis-one-line ot6VAZq1Xfbw2Vh8Qt_A">Bài hát đã thích</span>
                                     <div class="gtuJjD43VjwtP8ii3H3P"></div>
-                                </label>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -359,91 +357,9 @@
             const seekTime = (audio.duration / 100) * e.target.value;
             audio.currentTime = seekTime;
         };
-        function viewsearch() {
-            $.ajax({
-                type: "GET",
-                url: "/Home/Search",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-        function viewindex() {
-            $.ajax({
-                type: "GET",
-                url: "/Home/Index1",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-        function viewlibrary() {
-            $.ajax({
-                type: "GET",
-                url: "/Home/Library",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-        function viewQLBH() {
-            $.ajax({
-                type: "GET",
-                url: "/QLBH/DSBaiHat",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-
-        function viewQLTK() {
-            $.ajax({
-                type: "GET",
-                url: "/QLTK/DSTaiKhoan",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-        function viewBHYT() {
-            $.ajax({
-                type: "GET",
-                url: "/Home/Baihatyeuthich",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
-        function viewThemPL() {
-            $.ajax({
-                type: "GET",
-                url: "/Home/ThemPL",
-                success: function (data) {
-                    $('.Root__main-view').replaceWith(data);
-                },
-                error: function (data) {
-                    alert('Lỗi!');
-                }
-            });
-        }
+        
+       
+       
 
     </script>
 
