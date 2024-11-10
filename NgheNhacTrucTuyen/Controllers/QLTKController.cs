@@ -21,7 +21,7 @@ namespace NgheNhacTrucTuyen.Controllers
 
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.MaTK == id);
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
             if (Request.Form.Count == 0)
             {
                 return View(a);
