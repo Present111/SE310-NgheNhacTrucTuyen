@@ -28,6 +28,82 @@
     <link rel="stylesheet" href="~/fonts/fontawesome-free-6.2.0-web/css/all.min.css">
     <link rel="stylesheet" href="~/Scripts/playaudio.js" />
 
+    <style>
+        /* Basic volume control container */
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        /* Mute button style */
+        .control-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-right: 12px;
+        }
+
+        /* Volume slider container */
+        .volume-slider {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hidden label for accessibility */
+        .hidden-visually {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+        }
+
+        /* Progress bar for volume slider */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #1db954; /* Spotify's green */
+            border-radius: 5px;
+        }
+
+        /* Customize slider appearance */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 3px;
+            background: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                background: #1db954;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                background: #1db954;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+    </style>
 
 
 </head>
@@ -279,12 +355,21 @@
                             </div>
                         </div>
                         <div class="jOKLc29vP0Bz1K0TsDtX">
-                            <i class="fa-solid fa-volume-low" style="margin-right: 20px;" onclick="document.getElementById('demo').volume -= 0.1;"></i>
+                            <div class="volume-controls" data-testid="volume-bar" dir="ltr" style="--button-size: 32px; --slider-width: 100%;">
+                                <!-- Mute Button -->
+                                <button class="control-button" aria-label="Mute" aria-describedby="volume-icon" data-testid="volume-bar-toggle-mute-button" onclick="toggleMute()">
+                                    <svg id="volume-icon" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 kcUFwU">
+                                        <path d="M9.741.85a.75.75 0 0 1 .375.65v13a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1-1.33-4.967 3.639 3.639 0 0 1 1.33-1.332l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.139 2.139 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>
+                                    </svg>
+                                </button>
 
-                            <i class="fa-solid fa-volume-high" style="margin-right: 80px;" onclick="document.getElementById('demo').volume += 0.1;"></i>
-
-
-
+                                <!-- Volume Slider -->
+                                <div class="volume-slider">
+                                    <label class="hidden-visually">Change Volume</label>
+                                    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" onchange="updateVolume(this.value)" style="width: 120px;">
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -298,6 +383,65 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+
+        // Function to toggle mute/unmute
+        function toggleMute() {
+            const video = document.getElementById('demo');  // Use your video/audio element ID
+            const slider = document.getElementById('volumeSlider');
+            const icon = document.getElementById('volume-icon');
+
+            // Toggle mute state
+            video.muted = !video.muted;
+
+            // If muted, set slider to 0 and change icon to muted state
+            if (video.muted) {
+                slider.value = 0;
+                icon.setAttribute('aria-label', 'Unmute');
+            } else {
+                slider.value = video.volume; // Restore volume level
+                icon.setAttribute('aria-label', 'Mute');
+            }
+
+            // Update progress bar
+            updateProgressBar(slider.value);
+        }
+
+        // Function to update volume based on slider value
+        function updateVolume(value) {
+            const video = document.getElementById('demo');  // Use your video/audio element ID
+            video.volume = value;  // Update video/audio volume based on slider
+
+            // If the volume is set to 0, mute the video
+            if (value == 0) {
+                video.muted = true;
+                const icon = document.getElementById('volume-icon');
+                icon.setAttribute('aria-label', 'Unmute');
+            } else {
+                video.muted = false; // Unmute if volume is above 0
+            }
+
+            // Update progress bar
+            updateProgressBar(value);
+        }
+
+        // Function to update progress bar based on the slider value
+        function updateProgressBar(value) {
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = (value * 100) + '%';
+        }
+
+        // Initialize the slider on page load to match the video's current volume
+        window.onload = function () {
+            const video = document.getElementById('demo');  // Use your video/audio element ID
+            const slider = document.getElementById('volumeSlider');
+            slider.value = video.volume;  // Set slider to current volume
+            updateProgressBar(slider.value);  // Update progress bar
+        };
+
+
+
+
         function playaudio1(message, anh, ten, casi) {
 
             document.getElementById('demo').pause();
