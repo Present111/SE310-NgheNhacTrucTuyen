@@ -11,7 +11,9 @@
                     <section class="playlist-creation">
                         <h1 class="playlist-title">
                             Hãy đặt tên cho danh sách phát của bạn
-                        </h1>
+                        </h1>  
+                        <p class="messagesuccess">@TempData["success"]</p>
+                                  
                         <form action="/Home/ThemPL" method="post" class="playlist-form">
                             <input type="text" name="tenPL" placeholder="Nhập tên danh sách của bạn" required class="playlist-input" />
                             <button type="submit" class="playlist-button">Thêm</button>
@@ -133,6 +135,15 @@
     input[type="checkbox"] {
         transform: scale(1.2);
     }
+
+
+    .messagesuccess {
+      
+        color: white;
+    }
+
+    
+
 </style>
 
 <script>

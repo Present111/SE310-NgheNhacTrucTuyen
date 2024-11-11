@@ -184,6 +184,7 @@ namespace NgheNhacTrucTuyen.Controllers
             DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.ToList();
             ViewBag.baihats = baihat;
+            TempData["success"] = null;
             return PartialView("ThemPL");
         }
 
@@ -221,11 +222,11 @@ namespace NgheNhacTrucTuyen.Controllers
                     context.PlayLists.InsertOnSubmit(pl);
                     context.SubmitChanges();
                 }
-                ViewBag.sucess = "Thêm PL thành công !";
+                TempData["success"] = "Thêm PL thành công !";
             }
             else
             {
-                ViewBag.sucess = "PL đã có trong danh sách";
+                TempData["success"] = "PL đã có trong danh sách";
             }
 
             return PartialView("ThemPL");
