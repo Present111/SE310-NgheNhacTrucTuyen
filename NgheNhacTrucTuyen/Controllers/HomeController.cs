@@ -130,7 +130,7 @@ namespace NgheNhacTrucTuyen.Controllers
             ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
             return View();
         }
-
+       
         [HttpGet]
         public ActionResult ThemYeuYhich(int id)
         {
@@ -181,8 +181,54 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult ThemPL()
         {
+            DBcontextDataContext context = new DBcontextDataContext();
+            var baihat = context.Nhacs.ToList();
+            ViewBag.baihats = baihat;
             return PartialView("ThemPL");
         }
 
+        [HttpPost]
+        public ActionResult ThemPL(string tenPL, string selectedSongsList)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            var baihat = context.Nhacs.ToList();
+            ViewBag.baihats = baihat;
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+
+            bool check = context.PlayLists.Where(x=>x.Matk==a.MaTK).Any(x => x.TenPL == tenPL);
+
+            if (check == false)
+            {
+               
+                PlayList p = new PlayList();
+                p.Matk = a.MaTK;
+                p.TenPL = tenPL;
+                context.PlayLists.InsertOnSubmit(p);
+                context.SubmitChanges();
+
+                var selectedSongIds = new List<int>();
+                if (string.IsNullOrEmpty(selectedSongsList)==false)
+                {
+                    selectedSongIds = selectedSongsList.Split(',').Select(int.Parse).ToList();
+                }
+               
+                foreach (var songId in selectedSongIds)
+                {
+                    PlayList pl = new PlayList();
+                    pl.Matk = a.MaTK;
+                    pl.MaBH = songId;
+                    pl.TenPL = tenPL;
+                    context.PlayLists.InsertOnSubmit(pl);
+                    context.SubmitChanges();
+                }
+                ViewBag.sucess = "Thêm PL thành công !";
+            }
+            else
+            {
+                ViewBag.sucess = "PL đã có trong danh sách";
+            }
+
+            return PartialView("ThemPL");
+        }
     }
 }

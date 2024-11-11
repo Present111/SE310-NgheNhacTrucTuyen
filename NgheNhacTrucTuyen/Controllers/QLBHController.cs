@@ -148,27 +148,7 @@ namespace NgheNhacTrucTuyen.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult ThemPlaylist(string tenPL)
-        {
-            DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-            var P1 = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList();
-            if (P1.Any(x => x.TenPL.Equals(tenPL)))
-            {
-
-                ViewBag.eror = "Tên playlist đã tồn tại";
-                return RedirectToAction("Index", "Home");
-            }
-            PlayList p = new PlayList();
-            p.Matk = a.MaTK;
-            p.TenPL = tenPL;
-            context.PlayLists.InsertOnSubmit(p);
-            context.SubmitChanges();
-
-            return RedirectToAction("Index", "Home");
-        }
-
+        
 
 
 

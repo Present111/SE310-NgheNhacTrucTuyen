@@ -1,135 +1,151 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="Root__main-view">
     <div class="main-view-container">
-        <div class="under-main-view"></div>
-        <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden main-view-container__scroll-node os-host-transition os-host-overflow os-host-overflow-y">
-            <div class="os-resize-observer-host observed">
-                <div class="os-resize-observer" style="left: 0px; right: auto"></div>
-            </div>
-            <div class="os-padding">
-                <div class="os-viewport os-viewport-native-scrollbars-invisible"
-                     style="overflow-y: scroll">
-                    <div class="os-content"
-                         style="padding: 0px; height: 100%; width: 100%">
-                        <div class="main-view-container__scroll-node-child-spacer"></div>
-                        <div class="main-view-container__scroll-node-child"
-                             style="min-height: calc(((100vh - 64px) - 90px) - 519px)">
-                            <main tabindex="-1"
-                                  aria-label="Spotify – Danh sách phát của tôi #12">
-                                <div class="GlueDropTarget GlueDropTarget--tracks GlueDropTarget--local-tracks GlueDropTarget--episodes GlueDropTarget--albums">
-                                    <section role="presentation"
-                                             class="dZ3U5sTGUTdanNamXe1z"
-                                             data-testid="playlist-page"
-                                             data-test-uri="spotify:playlist:3vbggz5ofJQZNFPzcLN0OY">
-                                        <div class="rezqw3Q4OEPB1m4rmwfw">
-                                            <div class="CoLO4pdSl8LGWyVZA00t"
-                                                 style="background-color: rgb(83, 83, 83)"></div>
-                                            <div class="os-host os-host-foreign os-theme-spotify os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden os-host-transition">
-                                                <div class="os-resize-observer-host observed">
-                                                    <div class="os-resize-observer"
-                                                         style="left: 0px; right: auto"></div>
-                                                </div>
+        <div style="margin-top: 60px;"></div>
+        <div class="form-container">
+            <div class="os-content" style="padding: 0; width: 100%;">
+                <div class="contentSpacing">
+                    <section class="playlist-creation">
+                        <h1 class="playlist-title">
+                            Hãy đặt tên cho danh sách phát của bạn
+                        </h1>
+                        <form action="/Home/ThemPL" method="post" class="playlist-form">
+                            <input type="text" name="tenPL" placeholder="Nhập tên danh sách của bạn" required class="playlist-input" />
+                            <button type="submit" class="playlist-button">Thêm</button>
 
-                                                <div class="os-content-glue"
-                                                     style="margin: 0px; height: 80px; width: 1294px"></div>
-                                                <div class="os-padding">
-                                                    <div class="os-viewport os-viewport-native-scrollbars-invisible">
-                                                        <div class="os-content"
-                                                             style="padding: 0px; height: auto; width: 100%">
-                                                            <div class="E4q8ogfdWtye7YgotBlN contentSpacing">
-                                                                <div class="eSg4ntPU2KQLfpLGXAww"
-                                                                     data-testid="action-bar-row">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
-                                                    <div class="os-scrollbar-track os-scrollbar-track-off">
-                                                        <div class="os-scrollbar-handle"
-                                                             style="
-                                width: 100%;
-                                transform: translate(0px, 0px);
-                              "></div>
-                                                    </div>
-                                                </div>
-                                                <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden">
-                                                    <div class="os-scrollbar-track os-scrollbar-track-off">
-                                                        <div class="os-scrollbar-handle"
-                                                             style="
-                                height: 100%;
-                                transform: translate(0px, 0px);
-                              "></div>
-                                                    </div>
-                                                </div>
-                                                <div class="os-scrollbar-corner"></div>
-                                            </div>
-                                            <div class="contentSpacing">
-                                                <section class="Ykd_JWqkR9gSLHISDBwP">
-                                                    <div class="g9xHCCSXDR8S5NvTbfwL">
-                                                        <h1 class="Type__TypeElement-goli3j-0 bcTfIx SMJIXlalPk_TESlyt2pC">
-                                                            Hãy đặt tên cho danh sách phát của bạn
-                                                        </h1>
-                                                        <form action="/QLBH/ThemPlaylist" method="post">
-                                                            <input type="text" value="" placeholder="nhập tên danh sách của bạn" name="tenPL" required
-                                                                   style="" />
-                                                            @ViewBag.eror
-                                                            <button type="submit">Thêm</button>
-                                                        </form>
-                                                    </div>
-
-                                                </section>
-                                                <div class="sAPXlA_oxu_8x1Cn0NTC"
-                                                     data-testid="playlist-inline-curation-results">
-                                                    <div class="_Z2TnFjt8GB5ryOtvyti"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                            </main>
-                        </div>
-                        <div class="main-view-container__mh-footer-container">
-                            <div class="footerContentSpacing">
-                                <div data-testid="grid-container"
-                                     class="iKwGKEfAfW7Rkx2_Ba4E"
-                                     style="
-                    --column-width: 185px;
-                    --column-count: 6;
-                    --grid-gap: 24px;
-                  "></div>
-                            </div>
-                            <nav data-testid="footer-div"
-                                 class="Footer__StyledFooter-sc-xwm5vq-0 cASFVN">
-                                <div class="Footer__TopSection-sc-xwm5vq-1 gFNFTZ">
-                                    <div class="Footer__StyledTopLinks-sc-xwm5vq-2 tENXN"></div>
-                                </div>
-                                <hr class="HorizontalRule__HorizontalRuleElement-sc-198gjx4-0 dIIeNs Footer__Line-sc-xwm5vq-3 fPuANY" />
-                                <div class="Footer__StyledBottomLinks-sc-xwm5vq-4 kgThxK"></div>
-                            </nav>
+                            <!-- Hidden inputs for selected songs -->
+                            <input type="hidden" name="selectedSongsList" id="selectedSongsList" />
+                        </form>
+                    </section>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table playlist-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)" /></th>
+                                        <th>Tên Bài Hát</th>
+                                        <th>Ảnh</th>
+                                        <th>Ca Sĩ</th>
+                                        <th>Ngày Phát Hành</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.baihats)
+                                    {
+                                        <tr>
+                                            <td><input type="checkbox" name="selectedSongs" value="@item.MaBH" /></td>
+                                            <td>@item.TenBH</td>
+                                            <td><img src="/image/@item.image" width="50" height="50" class="song-img" /></td>
+                                            <td>@item.CaSi.TenCS</td>
+                                            <td>@item.NgayPH.ToString("dd/MM/yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable">
-                <div class="os-scrollbar-track">
-                    <div class="os-scrollbar-handle"
-                         style="width: 100%; transform: translate(0px, 0px)"></div>
-                </div>
-            </div>
-            <div class="os-scrollbar os-scrollbar-vertical">
-                <div class="os-scrollbar-track">
-                    <div class="os-scrollbar-handle"
-                         style="height: 63.3873%; transform: translate(0px, 184.748px)"></div>
-                </div>
-            </div>
-            <div class="os-scrollbar-corner"></div>
         </div>
     </div>
-    <div class="Root__modal-slot"></div>
 </div>
 
+<style>
+    /* Spotify-like theme styling */
+    .main-view-container {
+        background-color: #121212;
+        color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+    }
 
+    .playlist-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #1DB954; /* Spotify green */
+    }
+
+    .playlist-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .playlist-input {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        width: 300px;
+    }
+
+    .playlist-button {
+        background-color: #1DB954;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .playlist-button:hover {
+            background-color: #1ed760;
+        }
+
+    .card {
+        background-color: #181818;
+        border: none;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .playlist-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .playlist-table th, .playlist-table td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .playlist-table th {
+            font-weight: bold;
+            color: #b3b3b3;
+        }
+
+        .playlist-table tr:hover {
+            background-color: #333;
+        }
+
+    .song-img {
+        border-radius: 4px;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.2);
+    }
+</style>
+
+<script>
+    // Function to collect selected songs' IDs and store them in a hidden input field
+    document.querySelector(".playlist-form").addEventListener("submit", function (event) {
+        let selectedSongs = [];
+
+        // Collect all checked checkboxes
+        document.querySelectorAll('input[name="selectedSongs"]:checked').forEach(function (checkbox) {
+            selectedSongs.push(checkbox.value); // Push the song ID to the array
+        });
+
+        // Set the value of the hidden input field with selected song IDs
+        document.getElementById("selectedSongsList").value = selectedSongs.join(","); // Join them with commas
+    });
+</script>
