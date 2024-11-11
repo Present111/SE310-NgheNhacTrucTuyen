@@ -134,12 +134,12 @@
             <div class="Root__top-bar">
                 <header class="header header-br">
                     <div class="Button">
-                        <button aria-label="Quay lại" class="btn return-button">
+                        
+                        <button aria-label="Quay lại" class="btn return-button" onclick="history.back();">
                             <i class="fa-solid fa-angle-left"></i>
-                        </button><button data-testid="top-bar-forward-button"
-                                         aria-label="Tiếp theo"
-                                         disabled=""
-                                         class="btn forward-button">
+                        </button>
+                        
+                        <button data-testid="top-bar-forward-button" aria-label="Tiếp theo" disabled="" class="btn forward-button" onclick="history.forward();">
                             <i class="fa-solid fa-angle-right"></i>
                         </button>
                     </div>
