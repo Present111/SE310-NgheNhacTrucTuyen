@@ -42,7 +42,7 @@
                                     <td style="vertical-align: middle">@item.CaSi.TenCS</td>
                                     <td style="vertical-align: middle">
 
-                                        <a onclick="EditBH('@item.MaBH')" style="margin-right: 10px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="/QLBH/Edit/@item.MaBH" style="margin-right: 10px;"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="/QLBH/Detail/@item.MaBH" style="margin-right: 10px;"> Chi tiết</a>
                                         <a href="/QLBH/Delete/@item.MaBH"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
@@ -184,19 +184,6 @@
             // Get the element with id="defaultOpen" and click on it
             document.getElementById("defaultOpen").click();
         </script>
-        <script>
-            function EditBH(mabh) {
-                $.ajax({
-                    type: "GET",
-                    url: "/QLBH/Edit/" + mabh,
-                    success: function (data) {
-                        $('.Root__main-view').replaceWith(data);
-                    },
-                    error: function (data) {
-                        alert('Lỗi!');
-                    }
-                });
-            }
-        </script>
+        
     </div>
 </div>

@@ -1,87 +1,161 @@
 ﻿@model NgheNhacTrucTuyen.Models.Nhac
+@using System.Web.Mvc
 
-
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="Root__main-view">
     <div class="main-view-container">
-        <div style="margin-top: 64px;">
+        <div style="margin-top: 64px;"></div>
 
-        </div>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                <h1>Chỉnh sửa bài hát</h1>
+            <div class="form-container">
+                <h1 class="form-header">Chỉnh sửa bài hát</h1>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaBH)
 
-                <div class="form-group">
-                    <label>Tên bài hát</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TenBH, new { htmlAttributes = new { @class = "form-control" } })
+                <!-- Tên bài hát and File nhạc -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label class="control-label">Tên bài hát</label>
+                        @Html.EditorFor(model => model.TenBH, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên bài hát", required = "required" } })
                         @Html.ValidationMessageFor(model => model.TenBH, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>File nhạc</label>
-                    <div class="col-md-10">
-                        <input type="text" value="@ViewBag.nhac.Files" readonly />
-                        @Html.EditorFor(model => model.Files, new { htmlAttributes = new { @type = "file" } })
+                    <div class="form-group">
+                        <label class="control-label">File nhạc</label>
+                        <input type="text" value="@ViewBag.nhac.Files" readonly class="form-control" />
+                        @Html.EditorFor(model => model.Files, new { htmlAttributes = new { @type = "file", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Files, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Ảnh</label>
-                    <div class="col-md-10">
-                        <input type="text" value="@ViewBag.nhac.image" readonly />
-                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file" } })
-
+                <!-- Ảnh and Ngày phát hành -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label class="control-label">Ảnh</label>
+                        <input type="text" value="@ViewBag.nhac.image" readonly class="form-control" />
+                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Ngày phát hành</label>
-                    <div class="col-md-10">
-                        <input type="text" value="@ViewBag.nhac.NgayPH" readonly />
-                        @Html.EditorFor(model => model.NgayPH, new { htmlAttributes = new { @type = "date", required = true } })
+                    <div class="form-group">
+                        <label class="control-label">Ngày phát hành</label>
+                        <input type="text" value="@ViewBag.nhac.NgayPH" readonly class="form-control" />
+                        @Html.EditorFor(model => model.NgayPH, new { htmlAttributes = new { @type = "date", @class = "form-control", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.NgayPH, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Tên ca sĩ</label>
-                    <div class="col-md-10">
+                <!-- Ca sĩ and Thể loại -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label class="control-label">Ca sĩ</label>
                         @Html.DropDownList("MaCS", ViewBag.Casis as SelectList, "---chọn ca sĩ---", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MaCS, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Thể loại</label>
-                    <div class="col-md-10">
+                    <div class="form-group">
+                        <label class="control-label">Thể loại</label>
                         @Html.DropDownList("MaTL", ViewBag.Theloais as SelectList, "---chọn thể loại---", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MaTL, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
+                <!-- Chủ đề -->
                 <div class="form-group">
-                    <label>Chủ đề</label>
-                    <div class="col-md-10">
-                        @Html.DropDownList("MaCD", ViewBag.Chudes as SelectList, "---chọn chủ đề---", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
-                    </div>
+                    <label class="control-label">Chủ đề</label>
+                    @Html.DropDownList("MaCD", ViewBag.Chudes as SelectList, "---chọn chủ đề---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Lưu" class="btn-default" />
-                    </div>
+                <!-- Submit Button -->
+                <div class="form-group form-submit">        
+                    <input type="submit" value="Lưu" class="btn-submit" />                   
                 </div>
             </div>
         }
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #121212;
+        color: #b3b3b3;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #282828;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-header {
+        text-align: center;
+        color: #1DB954;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-group-row {
+        display: flex;
+        gap: 20px; /* Spacing between columns */
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        flex: 1; /* Makes each form element take equal width */
+    }
+
+    .control-label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #b3b3b3;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #444;
+        border-radius: 4px;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1DB954;
+        }
+
+    .btn-submit {
+        background-color: #1DB954;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .btn-submit:hover {
+            background-color: #1aa34a;
+        }
+
+    .text-danger {
+        font-size: 12px;
+        color: red;
+    }
+
+    .form-submit {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>

@@ -50,6 +50,7 @@ namespace NgheNhacTrucTuyen.Controllers
             DBcontextDataContext context = new DBcontextDataContext();
             ChuDe cd = context.ChuDes.FirstOrDefault(x => x.MaCD == id);
             ViewBag.chude = cd;
+            ViewBag.anhchude = cd.Picture;
             if (Request.Form.Count == 0)
             {
                 return View(cd);

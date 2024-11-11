@@ -5,37 +5,126 @@
 
 <div class="Root__main-view">
     <div class="main-view-container">
-        <div style="margin-top: 64px;">
+        <div style="margin-top: 64px;"></div>
 
-        </div>
+        <br />
+        <br />
+
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                <h1>Chỉnh sửa thể loại</h1>
+            <div class="form-container">
+                <h1 class="form-header">Chỉnh sửa thể loại</h1>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaTL)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TenTL, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TenTL, new { htmlAttributes = new { @class = "form-control", required = true } })
-                        @Html.ValidationMessageFor(model => model.TenTL, "", new { @class = "text-danger" })
+                <div class="form-content">
+                    <div class="form-group">
+                        <label class="control-label">Tên thể loại</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenTL, new { htmlAttributes = new { @class = "form-control", required = true } })
+                            @Html.ValidationMessageFor(model => model.TenTL, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                @ViewBag.ok
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+
+                    @ViewBag.ok
+
+                    <div class="form-group form-submit">
+                        <input type="submit" value="Save" class="btn-submit" />
                     </div>
                 </div>
             </div>
         }
 
-        <div>
-            @Html.ActionLink("Back to List", "DSBaiHat", "QLBH")
-        </div>
+       
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #121212;
+        color: #b3b3b3;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #282828;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-header {
+        text-align: center;
+        color: #1DB954;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .form-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .control-label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #b3b3b3;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #444;
+        border-radius: 4px;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1DB954;
+        }
+
+    .form-submit {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-submit {
+        background-color: #1DB954;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .btn-submit:hover {
+            background-color: #1aa34a;
+        }
+
+    .btn-back {
+        display: inline-block;
+        background-color: #444;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .btn-back:hover {
+            background-color: #333;
+        }
+</style>

@@ -4,68 +4,140 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="Root__main-view">
     <div class="main-view-container">
-        <div style="margin-top: 60px;">
+        <div style="margin-top: 60px;"></div>
 
-        </div>
-        <div>
-            <h4>Nhac</h4>
-            <hr />
-            <dl class="dl-horizontal">
+        <div class="song-detail">
+            <h4 class="song-title">Thông tin Bài hát</h4>
+            <hr class="divider" />
+
+            <dl class="song-info">
+                <!-- Tên bài hát -->
                 <dt>
-                    <label>Tên bài hát</label>
+                    <label class="detail-label">Tên bài hát:</label>
                 </dt>
-
-                <dd>
+                <dd class="detail-value">
                     @ViewBag.detail.TenBH
                 </dd>
-                <dt>
-                    <label>Ảnh</label>
-                </dt>
 
-                <dd>
-                    <img src="~/image/@ViewBag.detail.image" width="100px" height="100px" />
+                <!-- Ảnh -->
+                <dt>
+                    <label class="detail-label">Ảnh:</label>
+                </dt>
+                <dd class="detail-value image-container">
+                    <img src="~/image/@ViewBag.detail.image" class="song-image" alt="Bài hát ảnh" />
                 </dd>
-                <dt>
-                    <label>Ngày Phát hành</label>
-                </dt>
 
-                <dd>
+                <!-- Ngày phát hành -->
+                <dt>
+                    <label class="detail-label">Ngày phát hành:</label>
+                </dt>
+                <dd class="detail-value">
                     @ViewBag.detail.NgayPH
                 </dd>
 
+                <!-- Ca sĩ -->
                 <dt>
-                    <label>Ca sĩ</label>
+                    <label class="detail-label">Ca sĩ:</label>
                 </dt>
-
-                <dd>
+                <dd class="detail-value">
                     @ViewBag.detail.CaSi.TenCS
                 </dd>
 
+                <!-- Thể loại -->
                 <dt>
-                    <label>Thể loại</label>
+                    <label class="detail-label">Thể loại:</label>
                 </dt>
-
-                <dd>
+                <dd class="detail-value">
                     @ViewBag.detail.TheLoai.TenTL
                 </dd>
 
+                <!-- Chủ đề -->
                 <dt>
-                    <label>Chủ đề</label>
+                    <label class="detail-label">Chủ đề:</label>
                 </dt>
-
-                <dd>
+                <dd class="detail-value">
                     @ViewBag.detail.ChuDe.TenCD
                 </dd>
-
             </dl>
         </div>
-        <p>
-            <a href="/QLBH/Edit/@ViewBag.detail.MaBH"></a>
-
-        </p>
 
     </div>
 </div>
+
+<style>
+    /* Body Background */
+    body {
+        background-color: #121212;
+        font-family: 'Arial', sans-serif;
+        color: #b3b3b3;
+    }
+
+    /* Root Main View */
+    .Root__main-view {
+        padding: 20px;
+    }
+
+
+    .song-detail {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #282828;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Song Details Header */
+    .song-title {
+        color: #1DB954;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Divider line */
+    .divider {
+        border: 1px solid #444;
+        margin-bottom: 20px;
+    }
+
+    /* Song Info */
+    .song-info {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 10px;
+        font-size: 16px;
+    }
+
+    /* Label for each detail */
+    .detail-label {
+        color: #b3b3b3;
+        font-weight: bold;
+    }
+
+    /* Value of each detail */
+    .detail-value {
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    /* Image Container */
+    .image-container {
+        text-align: center;
+    }
+
+    /* Song Image */
+    .song-image {
+        border-radius: 8px;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsiveness for smaller screens */
+    
+</style>
