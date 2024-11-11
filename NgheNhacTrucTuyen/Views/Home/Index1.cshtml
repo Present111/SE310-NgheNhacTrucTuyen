@@ -2,7 +2,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="Root__main-view">
     <div class="main-view-container">
         <div class="under-main-view"></div>
@@ -90,11 +89,10 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="E1N1ByPFWo4AJLHovIBQ">
-                                                                            <button draggable="false"
+                                                                            <button onclick="window.location.href='/Home/Baihat/@item.MaBH'" draggable="false"
                                                                                     style=" border: none; background-color: hsl(0deg 0% 9%);"
                                                                                     class="Nqa6Cw3RkDMV8QnYreTr"
-                                                                                    dir="auto"
-                                                                                    onclick="Baihat(@item.MaBH)">
+                                                                                    dir="auto">
                                                                                 <div class="Type__TypeElement-goli3j-0 iCdlru nk6UgB4GUYNoAcPtAQaG">
                                                                                     @item.TenBH
                                                                                 </div>
@@ -123,18 +121,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function Baihat(mabh) {
-        $.ajax({
-            type: "GET",
-            url: "/Home/Baihat/" + mabh,
-            success: function (data) {
-                $('.Root__main-view').replaceWith(data);
-            },
-            error: function (data) {
-                alert('Lỗi!');
-            }
-        });
-    }
-</script>

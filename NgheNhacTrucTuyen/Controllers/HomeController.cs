@@ -149,8 +149,16 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult BaiHat(int id)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-            ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+            
+            if (Session["Email"] == null)
+            {
+                ViewBag.playlists = context.PlayLists.ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+            }
+            else
+            {
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+                ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+            }
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             ViewBag.baihat = n;
             var nhac = context.Nhacs.Where(x => x.MaCS == n.MaCS).ToList();
