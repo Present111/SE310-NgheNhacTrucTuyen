@@ -105,7 +105,10 @@ namespace NgheNhacTrucTuyen.Controllers
                 return View(n);
             }
             n.TenBH = Request.Form["TenBH"];
-            n.NgayPH = DateTime.ParseExact(Request.Form["NgayPH"], "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(Request.Form["NgayPH"]))
+            {
+                n.NgayPH = DateTime.ParseExact(Request.Form["NgayPH"], "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
             n.MaCS = int.Parse(Request.Form["MaCS"]);
             n.MaTL = int.Parse(Request.Form["MaTL"]);
             n.MaCD = int.Parse(Request.Form["MaCD"]);

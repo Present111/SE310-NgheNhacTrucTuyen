@@ -1,60 +1,144 @@
 ﻿@model IEnumerable<NgheNhacTrucTuyen.Models.account>
 @{
-
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="Root__main-view">
     <div class="main-view-container">
-        <div style="margin-top: 64px;">
-
-        </div>
-        <button class="addbaihat" type="submit">
+        <div style="margin-top: 64px;"></div>
+        <br />
+        <!-- Add Account Button aligned to the right -->
+        <button class="add-item-btn" type="submit" style="float: right;">
             @Html.ActionLink("Thêm tài khoản mới", "Createtk", "QLTK")
-
         </button>
 
+        <!-- Table for Accounts with 20px left and right margin -->
         <table class="table">
-            <tr>
-                <th>
-                    <label>Email</label>
-                </th>
-                <th>
-                    <label>Password</label>
-                </th>
-                <th>
-                    <label>Quyền</label>
-                </th>
-                <th>
-                    <label>Tên</label>
-                </th>
-                <th>
-                    <label>Tùy chọn</label>
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in ViewBag.taikhoan)
-            {
+            <thead>
                 <tr>
-                    <td>
-                        @item.Email
-                    </td>
-                    <td>
-                        @item.PassWord
-                    </td>
-                    <td>
-                        @item.Role
-                    </td>
-                    <td>
-                        @item.Ten
-                    </td>
-                    <td style="vertical-align: middle">
-                        <a href="/QLTK/Edittk/@item.MaTK" style="margin-right: 15px;"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/QLTK/Deletetk/@item.MaTK"><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Quyền</th>
+                    <th>Tên</th>
+                    <th>Tùy chọn</th>
                 </tr>
-            }
-
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.taikhoan)
+                {
+                    <tr>
+                        <td>@item.Email</td>
+                        <td>@item.PassWord</td>
+                        <td>@item.Role</td>
+                        <td>@item.Ten</td>
+                        <td>
+                            <a href="/QLTK/Edittk/@item.MaTK" class="action-link"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                            <a href="/QLTK/Deletetk/@item.MaTK" class="action-link"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </div>
+
+<script src="~/Scripts/Casi.js"></script>
+<style>
+    /* Table Styling */
+    table {
+        border-collapse: collapse;
+        background-color: #121212; /* Dark background */
+        color: #ddd; /* Light text */
+        margin-top: 20px;
+        margin-left: 20px; /* Add 20px left margin */
+        margin-right: 20px; /* Add 20px right margin */
+        border-radius: 8px; /* Rounded corners for table */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        max-width: 95%; /* Ensure the table doesn't exceed its container width */
+      
+    }
+
+
+    th, td {
+        padding: 12px 20px;
+        text-align: left;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #1e1e1e; /* Darker header */
+        color: #fff;
+        font-weight: 600;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    td {
+        background-color: #2a2a2a;
+        color: #ccc;
+        vertical-align: middle;
+        border-bottom: 1px solid #444;
+    }
+
+    tr:nth-child(even) {
+        background-color: #1f1f1f; /* Slightly lighter for even rows */
+    }
+
+    tr:hover {
+        background-color: #333333; /* Subtle hover effect */
+    }
+
+    /* Action Links */
+    .action-link {
+        color: #1DB954; /* Spotify-like green */
+        text-decoration: none;
+        margin-right: 15px;
+        font-size: 14px;
+    }
+
+    .action-link:hover {
+        color: #1ed760; /* Slightly brighter green on hover */
+        text-decoration: underline;
+    }
+
+    /* Add Item Button */
+    .add-item-btn {
+        background-color: #1DB954; /* Spotify-like green */
+        color: white;
+        padding: 14px 25px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+        margin-right: 50px;
+    }
+
+    .add-item-btn:hover {
+        background-color: #1ed760; /* Lighter green on hover */
+    }
+
+    /* Hover effect for table rows */
+    tr:hover {
+        background-color: #444444;
+    }
+
+    /* Mobile Responsiveness */
+    media (max-width: 768px) {
+        th, td {
+            padding: 8px 10px;
+        }
+
+        .add-item-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+        }
+    }
+    thead {
+        background-color: #282828;
+    }
+   
+
+</style>

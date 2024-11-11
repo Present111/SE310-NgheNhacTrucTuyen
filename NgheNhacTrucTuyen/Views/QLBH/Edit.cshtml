@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label class="control-label">Ngày phát hành</label>
                         <input type="text" value="@ViewBag.nhac.NgayPH" readonly class="form-control" />
-                        @Html.EditorFor(model => model.NgayPH, new { htmlAttributes = new { @type = "date", @class = "form-control", required = "required" } })
+                        @Html.EditorFor(model => model.NgayPH, new { htmlAttributes = new { @type = "date", @class = "form-control"} })
                         @Html.ValidationMessageFor(model => model.NgayPH, "", new { @class = "text-danger" })
                     </div>
                 </div>
