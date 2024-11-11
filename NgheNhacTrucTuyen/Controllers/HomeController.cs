@@ -1,7 +1,9 @@
 ﻿using NgheNhacTrucTuyen.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,22 +49,51 @@ namespace NgheNhacTrucTuyen.Controllers
         }
 
 
-      
+
         [HttpGet]
         public ActionResult TimKiem(string SearchString)
         {
             DBcontextDataContext context = new DBcontextDataContext();
             List<Nhac> a = context.Nhacs.ToList();
             var link = from l in a select l;
+
             if (!string.IsNullOrEmpty(SearchString))
             {
-                link = link.Where(s => s.TenBH.Contains(SearchString));
+               
+                var normalizedSearchString = RemoveDiacritics(SearchString.ToLower());
+
+                link = link.Where(s => RemoveDiacritics(s.TenBH.ToLower()).Contains(normalizedSearchString));
             }
+
             return View(link);
         }
 
+       
+        public static string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
 
-      
+           
+            var normalized = text.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var c in normalized)
+            {
+                
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+
+
         [HttpGet]
         public ActionResult Library()
         {

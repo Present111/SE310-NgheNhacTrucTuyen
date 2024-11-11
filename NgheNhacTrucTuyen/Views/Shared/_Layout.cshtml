@@ -6,6 +6,27 @@
     bool adm = Session["adm"] != null && (bool)Session["adm"];
     string Ten = Session["Ten"] != null ? Session["Ten"].ToString() : "";
 
+    string linkLibrary ="/Login/Login";
+    string linkDSBaiHat = "/Login/Login";
+    string linkDSTaiKhoan = "/Login/Login";
+    string linkThemPL = "/Login/Login";
+    string linkBaiHatYeuThich = "/Login/Login";
+
+    if (islogin == true)
+    {
+        linkLibrary = "/Home/Library";
+        linkThemPL = "/Home/ThemPL";
+        linkBaiHatYeuThich = "/Home/BaiHatYeuThich";
+
+    }
+
+    if (islogin == true && adm == true)
+    {
+        linkDSBaiHat = "/QLBH/DSBaiHat";
+        linkDSTaiKhoan = "/QLTK/DSTaiKhoan";
+    }
+
+
 }
 
 
@@ -171,7 +192,7 @@
                             </a>
                         </li>
                         <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                            <a href="/Home/Search" class="link-subtle ATUzFKub89lzvkmvhpyE"
+                            <a href="/Home/TimKiem" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                    draggable="false"
                                    >
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -179,7 +200,7 @@
                             </a>
                         </li>
                         <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                            <a href="/Home/Library" class="link-subtle ATUzFKub89lzvkmvhpyE"
+                            <a href="@linkLibrary" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                    draggable="false"
                                    >
                                 <i class="fa-solid fa-swatchbook"></i>
@@ -189,7 +210,7 @@
                         @{ if (islogin == true && adm == true)
                             {
                                 <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                                    <a href="/QLBH/DSBaiHat" class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                    <a href="@linkDSBaiHat" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                            draggable="false"
                                            >
                                         <i class="fa-solid fa-list-check"></i>
@@ -197,7 +218,7 @@
                                     </a>
                                 </li>
                                 <li class="eNs6P3JYpf2LScgTDHc6 InvalidDropTarget">
-                                    <a href="/QLTK/DSTaiKhoan" class="link-subtle ATUzFKub89lzvkmvhpyE"
+                                    <a href="@linkDSTaiKhoan" class="link-subtle ATUzFKub89lzvkmvhpyE"
                                            draggable="false"
                                            >
                                         <i class="fa-solid fa-user"></i>
@@ -211,7 +232,7 @@
                         <div class="EY6S7vlkxB7SF_OjjF_Y">
                             <div class="GlueDropTarget GlueDropTarget--albums GlueDropTarget--tracks GlueDropTarget--local-tracks GlueDropTarget--episodes">
 
-                                <a href="/Home/ThemPL" type="button" id="mybtn"
+                                <a href="@linkThemPL" type="button" id="mybtn"
                                         class="IPVjkkhh06nan7aZK7Bx"
                                         data-testid="create-playlist-button">
                                     <div class="Bwc9jlVb7HWs8JJupnBB">
@@ -224,7 +245,7 @@
                                 </a>
                             </div>
                             <div class="GlueDropTarget GlueDropTarget--tracks">
-                                <a href="/Home/BaiHatYeuThich" class="r9YzlaAPnM2LGK97GSfa"
+                                <a href="@linkBaiHatYeuThich" class="r9YzlaAPnM2LGK97GSfa"
                                        draggable="false">
                                     <div class="bFQ9NOIn1bDs8tTH0ebQ">
                                         <div class="Nd_DeCpszONzyaLe5Wd1">
