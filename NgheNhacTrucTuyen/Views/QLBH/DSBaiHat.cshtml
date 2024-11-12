@@ -6,10 +6,11 @@
     <div class="main-view-container">
         <div style="margin-top: 60px;"> </div>
         <br />
-        <button class="tablink" onclick="openPage('Home', this, 'green')" id="defaultOpen">Danh sách bài hát</button>
-        <button class="tablink" onclick="openPage('News', this, 'green')">Ca sĩ</button>
-        <button class="tablink" onclick="openPage('Contact', this, 'green')">Thể loại</button>
-        <button class="tablink" onclick="openPage('About', this, 'green')">Chủ đề</button>
+
+        <button id="1" class="tablink" onclick="openPage('Home', this, 'green', '1')">Danh sách bài hát</button>
+        <button id="2" class="tablink" onclick="openPage('News', this, 'green', '2')">Ca sĩ</button>
+        <button id="3" class="tablink" onclick="openPage('Contact', this, 'green', '3')">Thể loại</button>
+        <button id="4" class="tablink" onclick="openPage('About', this, 'green', '4')">Chủ đề</button>
 
         <div id="Home" class="tabcontent">
             <button class="addbaihat" type="submit">
@@ -159,30 +160,48 @@
 
         <script src="~/Scripts/Casi.js"></script>
         <script>
-            function openPage(pageName, elmnt, color) {
-                // Hide all elements with class="tabcontent" by default */
+          
+            if (!localStorage.getItem("selectedTab")) {
+                localStorage.setItem("selectedTab", "1");
+            }
+
+            function openPage(pageName, elmnt, color, tab) {
+                // Ẩn tất cả các phần tử có class="tabcontent"
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
                 for (i = 0; i < tabcontent.length; i++) {
                     tabcontent[i].style.display = "none";
                 }
 
-                // Remove the background color of all tablinks/buttons
+                // Loại bỏ màu nền của tất cả các tablink/button
                 tablinks = document.getElementsByClassName("tablink");
                 for (i = 0; i < tablinks.length; i++) {
                     tablinks[i].style.backgroundColor = "";
                 }
 
-                // Show the specific tab content
+                // Hiển thị nội dung tab cụ thể
                 document.getElementById(pageName).style.display = "block";
 
-                // Add the specific color to the button used to open the tab content
+                // Thêm màu nền cho nút được nhấp để mở nội dung tab
                 elmnt.style.backgroundColor = color;
+
+                // Gửi form nếu giá trị tab thay đổi và form chưa được gửi
+                if (localStorage.getItem("selectedTab") !== tab) {
+                  
+                    localStorage.setItem("selectedTab", tab); 
+                }
             }
 
-            // Get the element with id="defaultOpen" and click on it
-            document.getElementById("defaultOpen").click();
+            // Tự động mở tab lưu trong Local Storage khi tải lại trang
+            var savedTab = localStorage.getItem("selectedTab");
+            if (savedTab && document.getElementById(savedTab)) {
+                document.getElementById(savedTab).click();
+            }
+
         </script>
+
+
+       
 
     </div>
 </div>
