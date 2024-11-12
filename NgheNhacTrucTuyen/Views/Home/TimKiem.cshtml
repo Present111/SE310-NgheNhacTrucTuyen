@@ -74,7 +74,7 @@
                                       ">
                                                         @foreach (var item in Model)
                                                         {
-                                                            <div class="LunqxlFIupJw_Dkx6mNx">
+                                                            <div class="LunqxlFIupJw_Dkx6mNx" onclick="window.location.href='/Home/Baihat/@item.MaBH'">
                                                                 <div draggable="true"
                                                                      class="XiVwj5uoqqSFpS4cYOC6">
                                                                     <div class="xBV4XgMq0gC5lQICFWY_">
@@ -92,7 +92,7 @@
                                                                         </div>
                                                                         <div class="woJQ5t2YiaJhjTv_KE7p">
                                                                             <div class="PFgcCoJSWC3KjhZxHDYH">
-                                                                                <button data-testid="play-button" onclick="playaudio1('/Sound/@item.Files', '/image/@item.image', '@item.TenBH', '@item.CaSi.TenCS' )"
+                                                                                <button data-testid="play-button" onclick="event.stopPropagation(); playaudio1('/Sound/@item.Files', '/image/@item.image', '@item.TenBH', '@item.CaSi.TenCS' )"
                                                                                         class="Button-qlcn5g-0 cKBTSk">
                                                                                     <i class="fa-solid fa-circle-play fa-3x"></i>
                                                                                 </button>

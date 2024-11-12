@@ -63,7 +63,7 @@
 
                                             @foreach (var item in ViewBag.Thuvien)
                                             {
-                                                <div class="LunqxlFIupJw_Dkx6mNx">
+                                                <div class="LunqxlFIupJw_Dkx6mNx" onclick="window.location.href='/Home/Playlist?tenPL=@item.TenPL'">
                                                     <div draggable="true"
                                                          class="XiVwj5uoqqSFpS4cYOC6">
                                                         <div class="xBV4XgMq0gC5lQICFWY_">
@@ -80,7 +80,7 @@
                                                             </div>
                                                             <div class="woJQ5t2YiaJhjTv_KE7p">
                                                                 <div class="PFgcCoJSWC3KjhZxHDYH">
-                                                                    <button data-testid="play-button"
+                                                                    <button onclick="event.stopPropagation();" data-testid="play-button"
                                                                             aria-label="Phát Best of Madihu"
                                                                             class="Button-qlcn5g-0 cKBTSk">
                                                                         <i class="fa-solid fa-circle-play fa-3x"></i>
