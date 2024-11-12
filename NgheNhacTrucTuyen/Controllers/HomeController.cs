@@ -101,7 +101,7 @@ namespace NgheNhacTrucTuyen.Controllers
             if (Session["Email"] != null)
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-                ViewBag.Thuvien = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL != "Bài hát yêu thích").ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                ViewBag.Thuvien = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL != "").ToList().GroupBy(x => x.TenPL).Select(group => group.First());
                 return PartialView("Library");
                 
             }
@@ -171,7 +171,7 @@ namespace NgheNhacTrucTuyen.Controllers
         {
             DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-            List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == "Bài hát yêu thích").ToList();
+            List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == "").ToList();
             ViewBag.playlist = PL;
             ViewBag.s = PL.Count();
             ViewBag.tk = a;
