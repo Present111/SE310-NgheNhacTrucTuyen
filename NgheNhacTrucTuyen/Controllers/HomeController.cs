@@ -59,7 +59,7 @@ namespace NgheNhacTrucTuyen.Controllers
 
             if (!string.IsNullOrEmpty(SearchString))
             {
-               
+
                 var normalizedSearchString = RemoveDiacritics(SearchString.ToLower());
 
                 link = link.Where(s => RemoveDiacritics(s.TenBH.ToLower()).Contains(normalizedSearchString));
@@ -68,7 +68,7 @@ namespace NgheNhacTrucTuyen.Controllers
             return View(link);
         }
 
-       
+
         public static string RemoveDiacritics(string text)
         {
             if (string.IsNullOrEmpty(text))
