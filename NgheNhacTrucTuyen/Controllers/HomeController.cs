@@ -101,7 +101,7 @@ namespace NgheNhacTrucTuyen.Controllers
             if (Session["Email"] != null)
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-                ViewBag.Thuvien = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                ViewBag.Thuvien = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL != "Bài hát yêu thích").ToList().GroupBy(x => x.TenPL).Select(group => group.First());
                 return PartialView("Library");
                 
             }
