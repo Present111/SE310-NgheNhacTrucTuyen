@@ -72,8 +72,9 @@
                 </div>
 
                 <!-- Submit Button -->
-                <div class="form-group form-submit">        
-                    <input type="submit" value="Lưu" class="btn-submit" />                   
+                <div class="form-group form-submit">
+                    <input type="submit" value="Lưu" class="btn-submit" />
+                    <button onclick="window.location.href='/QLBH/DSBaiHat'" type="button" class="btn-back">Back</button>
                 </div>
             </div>
         }
@@ -158,4 +159,16 @@
         text-align: center;
         margin-top: 20px;
     }
+    .btn-back {
+        display: inline-block;
+        background-color: #444;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .btn-back:hover {
+            background-color: #333;
+        }
 </style>
