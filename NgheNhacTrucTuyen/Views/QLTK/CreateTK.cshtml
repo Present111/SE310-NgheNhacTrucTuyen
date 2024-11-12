@@ -49,9 +49,10 @@
                     @ViewBag.sucess
 
                     <!-- Submit Button -->
-                    <div class="form-group form-submit">
-                        <input type="submit" value="Create" class="btn-submit" />
-                    </div>
+                <div class="form-group form-submit">
+                    <input type="submit" value="Create" class="btn-submit" />
+                    <button onclick="window.location.href='/QLTK/DSTaiKhoan'" type="button" class="btn-back">Back</button>
+                </div>
                 </div>
             </div>
         }
@@ -134,4 +135,17 @@
         color: #e74c3c;
         font-size: 12px;
     }
+
+    .btn-back {
+        display: inline-block;
+        background-color: #444;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .btn-back:hover {
+            background-color: #333;
+        }
 </style>
