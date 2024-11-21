@@ -163,7 +163,7 @@ namespace NgheNhacTrucTuyen.Controllers
 
 
         [HttpPost]
-        public ActionResult themvaoPL(int id, string TenPL)
+        public ActionResult ThemvaoPL(int id, string TenPL)
         {
             DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
