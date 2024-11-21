@@ -69,7 +69,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 }
                 context.Nhacs.InsertOnSubmit(p);
                 context.SubmitChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("DSBaiHat", "QLBH");
 
             }
 
@@ -129,7 +129,7 @@ namespace NgheNhacTrucTuyen.Controllers
             }
 
             context.SubmitChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DSBaiHat", "QLBH");
         }
 
         public ActionResult Delete(int id)

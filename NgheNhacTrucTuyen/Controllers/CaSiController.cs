@@ -68,9 +68,9 @@ namespace NgheNhacTrucTuyen.Controllers
             {
                 context.CaSis.DeleteOnSubmit(data);
                 context.SubmitChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("DSBaiHat", "QLBH");
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DSBaiHat", "QLBH");
         }
     }
 }
