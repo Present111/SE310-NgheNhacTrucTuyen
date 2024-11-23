@@ -101,8 +101,7 @@
                                                                 </button>
                                                             </div>
 
-                                                            <button type="button"
-                                                                    role="switch"
+                                                            <button 
                                                                     aria-checked="@ViewBag.IsFavorited"
                                                                     aria-label="Lưu vào Thư viện"
                                                                     class="Fm7C3gdh5Lsc9qSXrQwO"
@@ -227,16 +226,17 @@
                                                                  role="gridcell"
                                                                  aria-colindex="3"
                                                                  tabindex="-1">
-                                                                <a type="button"
-                                                                   role="switch"
-                                                                   aria-checked="false"
+                                                                <button      
+                                                                   aria-checked="false"                                                                 
                                                                    aria-label="Lưu vào Thư viện"
                                                                    class="Fm7C3gdh5Lsc9qSXrQwO tGKwoPuvNBNK3TzCS5OH"
                                                                    data-testid="add-button"
                                                                    tabindex="-1"
-                                                                   href="/Home/Themyeuthich/@ViewBag.baihat.MaBH">
-                                                                    <i class="fa-regular fa-heart"></i>
-                                                                </a>
+                                                                   data-id="@ViewBag.baihat.MaBH" 
+                                                                   onclick="toggleHeart(this)">
+                                                                    <i class="@(@ViewBag.IsFavorited ? "fa-solid" : "fa-regular") fa-heart"
+                                                                       style="color: @(@ViewBag.IsFavorited ? "red" : "");"></i>
+                                                                </button>
                                                                 <div class="Type__TypeElement-goli3j-0 gPOKDu Btg2qHSuepFGBG6X0yEN">
 
                                                                 </div>
@@ -421,16 +421,19 @@
 <script>
     function toggleHeart(button) {
         const icon = button.querySelector('i');
-        const isChecked = button.getAttribute('aria-checked') === 'true';
         const songId = button.getAttribute('data-id'); 
-
+        const relatedButtons = document.querySelectorAll(`button[data-id="${songId}"]`);
        
-        button.setAttribute('aria-checked', !isChecked);
-        if (icon.style.color == 'red') {
-            icon.classList.remove('fa-solid');
-            icon.classList.add('fa-regular');
-            icon.style.color = ''; 
+        
 
+        if (icon.style.color == 'red') {
+
+            relatedButtons.forEach(btn => {
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                icon.style.color = ''; // Đặt màu về mặc định
+            });
          
             fetch('/Home/XoaYeuThich', {
                 method: 'POST',
@@ -445,9 +448,14 @@
                     }
                 });
         } else {
-            icon.classList.remove('fa-regular');
-            icon.classList.add('fa-solid');
-            icon.style.color = 'red';
+
+
+            relatedButtons.forEach(btn => {
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+                icon.style.color = 'red'; // Đặt màu đỏ cho trái tim
+            });
 
          
             fetch('/Home/ThemYeuThich', {
