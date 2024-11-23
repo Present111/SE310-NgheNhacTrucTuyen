@@ -165,15 +165,22 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult ThemvaoPL(int id, string TenPL)
         {
-            DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-            PlayList p = new PlayList();
-            p.Matk = a.MaTK;
-            p.MaBH = id;
-            p.TenPL = TenPL;
-            context.PlayLists.InsertOnSubmit(p);
-            context.SubmitChanges();
-            ViewBag.ok1 = "Thên thành công";
+            if (Session["Email"] != null)
+            {
+                DBcontextDataContext context = new DBcontextDataContext();
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+                bool check = context.PlayLists.Any(x => x.TenPL == TenPL && x.Matk == a.MaTK);
+                if (check)
+                {
+                    PlayList p = new PlayList();
+                    p.Matk = a.MaTK;
+                    p.MaBH = id;
+                    p.TenPL = TenPL;
+                    context.PlayLists.InsertOnSubmit(p);
+                    context.SubmitChanges();
+                    ViewBag.ok1 = "Thêm thành công";
+                }
+            }
             return RedirectToAction("Baihat", "Home", new { id = id });
         }
 

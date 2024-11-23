@@ -101,11 +101,10 @@
                                                                 </button>
                                                             </div>
 
-                                                            <button 
-                                                                    aria-checked="@ViewBag.IsFavorited"
+                                                            <button aria-checked="@ViewBag.IsFavorited"
                                                                     aria-label="Lưu vào Thư viện"
                                                                     class="Fm7C3gdh5Lsc9qSXrQwO"
-                                                                    data-id="@ViewBag.baihat.MaBH" 
+                                                                    data-id="@ViewBag.baihat.MaBH"
                                                                     onclick="toggleHeart(this)">
                                                                 <i class="@(@ViewBag.IsFavorited ? "fa-solid" : "fa-regular") fa-heart fa-2x"
                                                                    style="color: @(@ViewBag.IsFavorited ? "red" : "");"></i>
@@ -113,12 +112,36 @@
 
 
                                                             <button type="button"
+                                                                    onclick="hienmenu()"
                                                                     aria-haspopup="menu"
                                                                     aria-label="Các tùy chọn khác cho Chiều Hôm Ấy"
                                                                     class="T0anrkk_QA4IAQL29get"
                                                                     data-testid="more-button">
                                                                 <i class="fa-solid fa-ellipsis fa-2x"></i>
                                                             </button>
+
+                                                            <div id="menuthem" style="display: none;">
+
+                                                                <form method="post" action="/QLBH/ThemvaoPL/?id=@ViewBag.baihat.MaBH" style="display: flex; align-items: center; width: auto;">
+                                                                    <select name="TenPL" style="padding: 8px 12px; border: 1px solid #444; border-radius: 4px; background-color: #555; color: white; font-size: 14px;">
+                                                                        <option>Chọn playlist</option>
+                                                                        @if (ViewBag.playlists != null)
+                                                                        {
+                                                                            foreach (var item in ViewBag.playlists)
+                                                                            {
+                                                                                <option value="@item.TenPL">@item.TenPL</option>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option disabled>Không có playlist nào</option>
+                                                                        }
+                                                                    </select>
+                                                                    <button type="submit" style="margin-left: 10px; padding: 6px 12px; background-color: #1DB954; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">OK</button>
+                                                                </form>
+
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,54 +263,8 @@
                                                                 <div class="Type__TypeElement-goli3j-0 gPOKDu Btg2qHSuepFGBG6X0yEN">
 
                                                                 </div>
-                                                                <div id="menuthem"
-                                                                     style="
-                                                                      z-index: 9999;
-                                                                      position: absolute;
-                                                                      inset: auto auto 0px 0px;
-                                                                      margin: 0px 20px 0px 0px;
-                                                                      transform: translate3d(1021px, -9px, 0px);
-                                                                      display: none;
-                                                                    ">
-                                                                    <div class="fade" style=""></div>
-                                                                    <div id="context-menu">
-                                                                        <ul tabindex="0" role="menu" data-depth="0" class="SboKmDrCTZng7t4EgNoM">
-                                                                            <li role="presentation" class="DuEPSADpSwCcO880xjUG" style="display: flex; align-items: center;">
-                                                                                <button class="wC9sIed7pfp47wZbmU6m">
-                                                                                    <span dir="auto"
-                                                                                          class="Type__TypeElement-goli3j-0 iTnRIT ellipsis-one-line">Thêm vào danh sách phát</span><span>
-                                                                                    </span>
-                                                                                </button>
-
-
-
-                                                                                <i class="fa-solid fa-x" onclick="tatmodalthem()"></i>
-                                                                            </li>
-                                                                            <li>
-                                                                                <form method="post" action="/QLBH/ThemvaoPL/?id=@ViewBag.baihat.MaBH">
-                                                                                    <select name="TenPL">
-                                                                                        <option>Chọn playlist</option>
-                                                                                        @foreach (var item in ViewBag.playlists)
-                                                                                        {
-                                                                                            <option value="@item.TenPL">@item.TenPL</option>
-                                                                                        }
-                                                                                    </select>
-                                                                                    <button type="submit">ok</button>
-                                                                                </form>
-                                                                                @ViewBag.ok1
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <button type="button"
-                                                                        onclick="hienmodalthem()"
-                                                                        aria-haspopup="menu"
-                                                                        aria-label="Các tùy chọn khác cho Chiều Hôm Ấy của JayKii"
-                                                                        class="T0anrkk_QA4IAQL29get mYN_ST1TsDdC6q1k1_xs"
-                                                                        data-testid="more-button"
-                                                                        tabindex="-1">
-                                                                    <i class="fa-solid fa-ellipsis-vertical ellips"></i>
-                                                                </button>
+                                                                
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -473,4 +450,16 @@
         }
     }
 
+    function hienmenu() {
+        var menu = document.getElementById("menuthem"); // Lấy phần tử menu
+        // Kiểm tra nếu menu đang ẩn (display: none), thì hiển thị nó
+        if (menu.style.display === "none" || menu.style.display === "") {
+            menu.style.display = "block"; // Hiển thị menu
+        } else {
+            menu.style.display = "none"; // Ẩn menu
+        }
+    }
+
+
 </script>
+

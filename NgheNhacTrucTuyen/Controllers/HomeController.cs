@@ -203,12 +203,12 @@ namespace NgheNhacTrucTuyen.Controllers
             if (Session["Email"] == null)
             {
                 ViewBag.IsFavorited = false;
-                ViewBag.playlists = context.PlayLists.ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                ViewBag.playlists = null;
             }
             else
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-                ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL != "").ToList().GroupBy(x => x.TenPL).Select(group => group.First());
                 bool check = context.PlayLists.Any(x => x.MaBH == id && x.TenPL == "" && x.Matk == a.MaTK);
                 ViewBag.IsFavorited = check;
             }
