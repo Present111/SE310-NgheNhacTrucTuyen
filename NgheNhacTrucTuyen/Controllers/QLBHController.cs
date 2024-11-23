@@ -172,16 +172,64 @@ namespace NgheNhacTrucTuyen.Controllers
                 bool check = context.PlayLists.Any(x => x.TenPL == TenPL && x.Matk == a.MaTK);
                 if (check)
                 {
-                    PlayList p = new PlayList();
-                    p.Matk = a.MaTK;
-                    p.MaBH = id;
-                    p.TenPL = TenPL;
-                    context.PlayLists.InsertOnSubmit(p);
-                    context.SubmitChanges();
-                    ViewBag.ok1 = "Thêm thành công";
+                    bool kiemtra = context.PlayLists.Any(x => x.TenPL == TenPL && x.Matk == a.MaTK && x.MaBH == id);
+                    if (kiemtra == false)
+                    {
+                        PlayList p = new PlayList();
+                        p.Matk = a.MaTK;
+                        p.MaBH = id;
+                        p.TenPL = TenPL;
+                        context.PlayLists.InsertOnSubmit(p);
+                        context.SubmitChanges();
+                        ViewBag.ok1 = "Thêm thành công";
+                    }
                 }
             }
             return RedirectToAction("Baihat", "Home", new { id = id });
+        }
+
+        [HttpPost]
+        public ActionResult XoakhoiPL(int id, string TenPL)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Playlist", "Home", new { id = TenPL });
+            }
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.MaBH == id && x.TenPL == TenPL).ToList();
+            if (playlistItems.Any())
+            {
+                context.PlayLists.DeleteAllOnSubmit(playlistItems);
+                context.SubmitChanges();
+                return RedirectToAction("Playlist", "Home", new { tenPL = TenPL });
+            }
+            else
+            {
+                return RedirectToAction("Playlist", "Home", new { tenPL = TenPL });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult XoakhoiYT(int id)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("BaiHatYeuThich", "Home");
+            }
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.MaBH == id && x.TenPL == "").ToList();
+            if (playlistItems.Any())
+            {
+                context.PlayLists.DeleteAllOnSubmit(playlistItems);
+                context.SubmitChanges();
+                return RedirectToAction("BaiHatYeuThich", "Home");
+            }
+            else
+            {
+                return RedirectToAction("BaiHatYeuThich", "Home");
+            }
         }
 
     }
