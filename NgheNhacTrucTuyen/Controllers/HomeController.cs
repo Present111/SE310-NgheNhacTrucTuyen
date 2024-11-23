@@ -1,6 +1,7 @@
 ﻿using NgheNhacTrucTuyen.Models;
 using System;
 using System.Collections.Generic;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -130,20 +131,69 @@ namespace NgheNhacTrucTuyen.Controllers
             ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
             return View();
         }
-       
-        [HttpGet]
-        public ActionResult ThemYeuYhich(int id)
+
+        [HttpPost]
+        public ActionResult ThemYeuThich(int id)
         {
-            DBcontextDataContext context = new DBcontextDataContext();
-            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-            PlayList p = new PlayList();
-            p.Matk = a.MaTK;
-            p.MaBH = id;
-            p.TenPL = "Bài hát yêu thích";
-            context.PlayLists.InsertOnSubmit(p);
-            context.SubmitChanges();
-            return RedirectToAction("Baihat", "Home", new { id = id });
+            try
+            {             
+                DBcontextDataContext context = new DBcontextDataContext();
+                if (Session["Email"] == null)
+                {
+                    return Json(new { success = false, message = "Người dùng không tồn tại." });
+                }
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());             
+                PlayList p = new PlayList
+                {
+                    Matk = a.MaTK,
+                    MaBH = id,
+                    TenPL = ""
+                };
+                context.PlayLists.InsertOnSubmit(p);
+                context.SubmitChanges(); 
+                return Json(new { success = true, message = "Thêm bài hát yêu thích thành công!" });
+            }
+            catch (Exception ex)
+            {
+               
+                return Json(new { success = false, message = ex.Message });
+            }
         }
+
+
+        [HttpPost]
+        public ActionResult XoaYeuThich(int id)
+        {
+            try
+            {           
+                DBcontextDataContext context = new DBcontextDataContext();
+                if (Session["Email"] == null)
+                {
+                    return Json(new { success = false, message = "Người dùng không tồn tại." });
+                }
+                account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+                List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.MaBH == id && x.TenPL == "").ToList(); 
+
+                if (playlistItems.Any()) 
+                {
+                    context.PlayLists.DeleteAllOnSubmit(playlistItems); 
+                    context.SubmitChanges(); 
+                    return Json(new { success = true, message = "Xóa bài hát yêu thích thành công!" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Không tìm thấy bài hát yêu thích để xóa." });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+
+
 
         [HttpGet]
         public ActionResult BaiHat(int id)
@@ -152,12 +202,15 @@ namespace NgheNhacTrucTuyen.Controllers
             
             if (Session["Email"] == null)
             {
+                ViewBag.IsFavorited = false;
                 ViewBag.playlists = context.PlayLists.ToList().GroupBy(x => x.TenPL).Select(group => group.First());
             }
             else
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
                 ViewBag.playlists = context.PlayLists.Where(x => x.Matk == a.MaTK).ToList().GroupBy(x => x.TenPL).Select(group => group.First());
+                bool check = context.PlayLists.Any(x => x.MaBH == id && x.TenPL == "" && x.Matk == a.MaTK);
+                ViewBag.IsFavorited = check;
             }
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             ViewBag.baihat = n;

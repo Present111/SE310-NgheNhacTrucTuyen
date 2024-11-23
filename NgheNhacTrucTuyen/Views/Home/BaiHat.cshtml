@@ -100,18 +100,24 @@
                                                                     <i class="fa-solid fa-circle-play fa-3x"></i>
                                                                 </button>
                                                             </div>
+
                                                             <button type="button"
                                                                     role="switch"
-                                                                    aria-checked="false"
+                                                                    aria-checked="@ViewBag.IsFavorited"
                                                                     aria-label="Lưu vào Thư viện"
                                                                     class="Fm7C3gdh5Lsc9qSXrQwO"
-                                                                    data-testid="add-button">
-                                                                <i class="fa-solid fa-heart fa-2x" style="color: pink;"></i>
-                                                            </button><button type="button"
-                                                                             aria-haspopup="menu"
-                                                                             aria-label="Các tùy chọn khác cho Chiều Hôm Ấy"
-                                                                             class="T0anrkk_QA4IAQL29get"
-                                                                             data-testid="more-button">
+                                                                    data-id="@ViewBag.baihat.MaBH" 
+                                                                    onclick="toggleHeart(this)">
+                                                                <i class="@(@ViewBag.IsFavorited ? "fa-solid" : "fa-regular") fa-heart fa-2x"
+                                                                   style="color: @(@ViewBag.IsFavorited ? "red" : "");"></i>
+                                                            </button>
+
+
+                                                            <button type="button"
+                                                                    aria-haspopup="menu"
+                                                                    aria-label="Các tùy chọn khác cho Chiều Hôm Ấy"
+                                                                    class="T0anrkk_QA4IAQL29get"
+                                                                    data-testid="more-button">
                                                                 <i class="fa-solid fa-ellipsis fa-2x"></i>
                                                             </button>
                                                         </div>
@@ -411,3 +417,52 @@
             </div>
         </div>
     </div>
+
+<script>
+    function toggleHeart(button) {
+        const icon = button.querySelector('i');
+        const isChecked = button.getAttribute('aria-checked') === 'true';
+        const songId = button.getAttribute('data-id'); 
+
+       
+        button.setAttribute('aria-checked', !isChecked);
+        if (icon.style.color == 'red') {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            icon.style.color = ''; 
+
+         
+            fetch('/Home/XoaYeuThich', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: songId })
+            }).then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error("Lỗi khi xóa bài hát yêu thích");
+                    }
+                });
+        } else {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            icon.style.color = 'red';
+
+         
+            fetch('/Home/ThemYeuThich', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: songId })
+            }).then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error("Lỗi khi thêm bài hát yêu thích");
+                    }
+                });
+        }
+    }
+
+</script>
