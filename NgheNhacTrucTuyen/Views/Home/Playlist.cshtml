@@ -91,7 +91,8 @@
                                                                 </button>
                                                             </div>
 
-                                                            <button type="button"
+                                                            <button id="menuButton"
+                                                                    type="button"
                                                                     aria-haspopup="menu"
                                                                     class="T0anrkk_QA4IAQL29get"
                                                                     data-testid="more-button">
@@ -226,7 +227,7 @@
                                                                         <div class="iCQtmPqY0QvkumAOuCjr">
                                                                             <a draggable="false"
                                                                                class="t_yrXoUO3qGsJS4Y6iXX"
-                                                                               data-testid="internal-track-link"                                                                             
+                                                                               data-testid="internal-track-link"
                                                                                tabindex="-1">
                                                                                 <div dir="auto"
                                                                                      class="Type__TypeElement-goli3j-0 dlOSsY t_yrXoUO3qGsJS4Y6iXX standalone-ellipsis-one-line"
@@ -235,7 +236,7 @@
                                                                                 </div>
                                                                             </a><span class="Type__TypeElement-goli3j-0 gPOKDu rq2VQ5mb9SDAFWbBIUIn standalone-ellipsis-one-line">
                                                                                 <a draggable="true"
-                                                                                   dir="auto"                                                                                  
+                                                                                   dir="auto"
                                                                                    tabindex="-1">@item.Nhac.CaSi.TenCS</a>
                                                                             </span>
                                                                         </div>
@@ -247,7 +248,7 @@
                                                                         <span class="Type__TypeElement-goli3j-0 iTnRIT">
                                                                             <a draggable="true"
                                                                                class="standalone-ellipsis-one-line"
-                                                                               dir="auto"                                                                              
+                                                                               dir="auto"
                                                                                tabindex="-1">@item.Nhac.TheLoai.TenTL</a>
                                                                         </span>
                                                                     </div>
@@ -262,20 +263,20 @@
                                                                          aria-colindex="5"
                                                                          tabindex="-1">
                                                                         @*<button type="button"
-                role="switch"
-                aria-checked="false"
-                aria-label="Lưu vào Thư viện"
-                class="Fm7C3gdh5Lsc9qSXrQwO tGKwoPuvNBNK3TzCS5OH"
-                data-testid="add-button"
-                tabindex="-1">
-            <i class="fa-regular fa-heart"></i>
-        </button>
-        <div class="Type__TypeElement-goli3j-0 gPOKDu Btg2qHSuepFGBG6X0yEN">
-                3:19
-            </div>*@
+                                                                                    role="switch"
+                                                                                    aria-checked="false"
+                                                                                    aria-label="Lưu vào Thư viện"
+                                                                                    class="Fm7C3gdh5Lsc9qSXrQwO tGKwoPuvNBNK3TzCS5OH"
+                                                                                    data-testid="add-button"
+                                                                                    tabindex="-1">
+                                                                                <i class="fa-regular fa-heart"></i>
+                                                                            </button>
+                                                                            <div class="Type__TypeElement-goli3j-0 gPOKDu Btg2qHSuepFGBG6X0yEN">
+                                                                                    3:19
+                                                                                </div>*@
                                                                         <form action="/QLBH/XoakhoiPL" method="post" style="display: inline;">
-                                                                            <input type="hidden" name="id" value="@item.Nhac.MaBH"> 
-                                                                            <input type="hidden" name="TenPL" value="@ViewBag.ten"> 
+                                                                            <input type="hidden" name="id" value="@item.Nhac.MaBH">
+                                                                            <input type="hidden" name="TenPL" value="@ViewBag.ten">
                                                                             <button type="submit"
                                                                                     aria-haspopup="menu"
                                                                                     aria-label="Các tùy chọn khác cho What Makes You Beautiful của One Direction"
@@ -356,4 +357,103 @@
         }
         isPlaying = !isPlaying;
     });
+</script>
+
+
+<style>
+
+    .context-menu {
+        display: none;
+        position: absolute;
+        background-color: #282828;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        z-index: 1000;
+        width: 200px;
+        font-size: 14px;
+        color: white;
+    }
+
+        .context-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .context-menu ul li {
+                padding: 12px 16px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            }
+
+                .context-menu ul li:hover {
+                    background-color: #1db954;
+                    color: white;
+                }
+
+                .context-menu ul li:last-child {
+                    border-bottom: none;
+                }
+</style>
+
+<div id="contextMenu" class="context-menu">
+    <ul>
+        <li> <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Chỉnh sửa Playlist</li>
+        <li onclick="deletePlaylist('@ViewBag.ten')"> <i class="fa-solid fa-trash-can"></i>&nbsp;&nbsp;&nbsp; Xóa Playlist </li>
+    </ul>
+</div>
+
+<script>
+
+    const menuButton = document.getElementById("menuButton");
+    const contextMenu = document.getElementById("contextMenu");
+
+
+    menuButton.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+
+        const rect = menuButton.getBoundingClientRect();
+
+
+        contextMenu.style.display = "block";
+        contextMenu.style.left = `${rect.left}px`;
+        contextMenu.style.top = `${rect.bottom + window.scrollY}px`;
+    });
+
+
+    document.addEventListener("click", function () {
+        contextMenu.style.display = "none";
+    });
+
+
+    contextMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+
+
+
+    
+    function deletePlaylist(tenPL) {
+        contextMenu.style.display = "none";
+        fetch('/Home/XoaPL', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ tenPL: tenPL })
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/Home/Library';  
+            } else {
+                console.error("Lỗi khi xóa playlist");
+            }
+        }).catch(error => {
+                console.error("Lỗi khi xóa playlist:", error);
+        });
+    }
+
+
+
 </script>

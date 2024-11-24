@@ -284,5 +284,21 @@ namespace NgheNhacTrucTuyen.Controllers
 
             return PartialView("ThemPL");
         }
+
+
+
+        [HttpPost]
+        public ActionResult XoaPL(string tenPL)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).ToList();
+            if (playlistItems.Any())
+            {
+                context.PlayLists.DeleteAllOnSubmit(playlistItems);
+                context.SubmitChanges();
+            }
+            return RedirectToAction("Library", "Home");
+        }
     }
 }
