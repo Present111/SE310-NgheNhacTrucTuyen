@@ -398,7 +398,12 @@
 
 <div id="contextMenu" class="context-menu">
     <ul>
-        <li> <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Chỉnh sửa Playlist</li>
+        <li>
+            <a href="@Url.Action("EditPL", "Home", new { tenPL = ViewBag.ten })">
+
+                <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Chỉnh sửa Playlist
+            </a>
+        </li>
         <li onclick="deletePlaylist('@ViewBag.ten')"> <i class="fa-solid fa-trash-can"></i>&nbsp;&nbsp;&nbsp; Xóa Playlist </li>
     </ul>
 </div>
@@ -454,6 +459,6 @@
         });
     }
 
-
+  
 
 </script>

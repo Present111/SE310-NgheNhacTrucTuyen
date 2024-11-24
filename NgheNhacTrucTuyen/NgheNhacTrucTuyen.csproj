@@ -245,6 +245,7 @@
     <Content Include="Views\Home\BaiHat.cshtml" />
     <Content Include="Views\Home\BaiHatYeuThich.cshtml" />
     <Content Include="Views\Home\ThemPL.cshtml" />
+    <Content Include="Views\Home\EditPL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

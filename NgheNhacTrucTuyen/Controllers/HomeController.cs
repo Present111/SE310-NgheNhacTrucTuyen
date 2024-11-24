@@ -300,5 +300,57 @@ namespace NgheNhacTrucTuyen.Controllers
             }
             return RedirectToAction("Library", "Home");
         }
+
+
+        [HttpGet]
+        public ActionResult EditPL(string tenPL)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            var baihat = context.Nhacs.ToList();
+            ViewBag.baihats = baihat;
+            ViewBag.tenPL = tenPL;
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            var playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).ToList();
+            var songIdsInPlaylist = playlistItems.Select(x => x.MaBH).ToList(); 
+            ViewBag.songIdsInPlaylist = songIdsInPlaylist;
+            return View(); 
+        }
+
+        [HttpPost]
+        public ActionResult EditPL(string tenPLold, string tenPL,string selectedSongsList)
+        {
+            DBcontextDataContext context = new DBcontextDataContext();
+            account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
+            List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPLold).ToList();
+            if (playlistItems.Any())
+            {
+                context.PlayLists.DeleteAllOnSubmit(playlistItems);
+                context.SubmitChanges();
+            }
+
+            PlayList p = new PlayList();
+            p.Matk = a.MaTK;
+            p.TenPL = tenPL;
+            context.PlayLists.InsertOnSubmit(p);
+            context.SubmitChanges();
+
+            var selectedSongIds = new List<int>();
+            if (string.IsNullOrEmpty(selectedSongsList) == false)
+            {
+                selectedSongIds = selectedSongsList.Split(',').Select(int.Parse).ToList();
+            }
+
+            foreach (var songId in selectedSongIds)
+            {
+                PlayList pl = new PlayList();
+                pl.Matk = a.MaTK;
+                pl.MaBH = songId;
+                pl.TenPL = tenPL;
+                context.PlayLists.InsertOnSubmit(pl);
+                context.SubmitChanges();
+            }
+            return RedirectToAction("Playlist", "Home", new { tenPL = tenPL });
+        }
+
     }
 }

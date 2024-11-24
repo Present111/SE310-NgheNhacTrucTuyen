@@ -12,14 +12,13 @@
                         <h1 class="playlist-title">
                             Hãy đặt tên cho danh sách phát của bạn
                         </h1>
-                        <p class="messagesuccess">@TempData["success"]</p>
+                      
 
-                        <form action="/Home/ThemPL" method="post" class="playlist-form">
-                            <input type="text" name="tenPL" placeholder="Nhập tên danh sách của bạn" required class="playlist-input" />
-                            <button type="submit" class="playlist-button">Thêm</button>
-
-                           
+                        <form action="/Home/EditPL" method="post" class="playlist-form">
+                            <input type="text" name="tenPL" placeholder="Nhập tên danh sách của bạn" value="@ViewBag.tenPL" required class="playlist-input" />
+                            <button type="submit" class="playlist-button">Cập nhật</button>
                             <input type="hidden" name="selectedSongsList" id="selectedSongsList" />
+                            <input type="text" name="tenPLold" id="tenPLold" value="@ViewBag.tenPL" style="display:none"/>
                         </form>
                     </section>
                     <div class="card">
@@ -37,9 +36,13 @@
                                 <tbody>
                                     @foreach (var item in ViewBag.baihats)
                                     {
-                                        <tr class="song-row">
+                                    
+                                        bool isSongInPlaylist = ViewBag.songIdsInPlaylist.Contains(item.MaBH);
+
+                                        <tr class="song-row @(isSongInPlaylist ? "checked" : "")">
                                             <td style="vertical-align: middle">
-                                                <input type="checkbox" name="selectedSongs" value="@item.MaBH" class="song-checkbox" id="song-@item.MaBH" />
+                                                <input type="checkbox" name="selectedSongs" value="@item.MaBH" class="song-checkbox" id="song-@item.MaBH"
+                                                       @(isSongInPlaylist ? "checked" : "") />
                                                 <label for="song-@item.MaBH"></label>
                                             </td>
                                             <td style="vertical-align: middle">@item.TenBH</td>
@@ -50,6 +53,7 @@
                                             <td style="vertical-align: middle">@item.NgayPH.ToString("dd/MM/yyyy")</td>
                                         </tr>
                                     }
+
                                 </tbody>
                             </table>
                         </div>
@@ -88,7 +92,7 @@
         border-radius: 5px;
         border: none;
         width: 300px;
-        color: black;
+        color:black;
     }
 
     .playlist-button {
@@ -120,7 +124,7 @@
     }
 
     .table td:first-child, .table th:first-child {
-        padding-left: 20px; 
+        padding-left: 20px;
     }
 
     input[type="checkbox"] {
@@ -136,7 +140,6 @@
 
     .playlist-table td:first-child, .playlist-table th:first-child {
         padding-left: 20px;
-        
     }
 
     .messagesuccess {
@@ -146,9 +149,10 @@
     .song-row {
         cursor: pointer;
     }
+
         .song-row.checked {
             background-color: #1DB954;
-        }   
+        }
 
     .song-checkbox-label {
         display: inline-block;
@@ -180,10 +184,8 @@
     }
 
     img {
-        border-radius: 8px; 
-       
+        border-radius: 8px;
     }
-
 </style>
 
 <script>
