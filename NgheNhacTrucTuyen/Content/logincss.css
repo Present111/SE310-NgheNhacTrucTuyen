@@ -27,7 +27,7 @@ p {
 }
 
 .signup-wrapper .company-details {
-  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSOGallpTf3Eyu6UV8Qy8YZAsI92B2vlQgvw&usqp=CAU);
+  
   background-size: cover;
   position: relative;
 }
@@ -57,7 +57,7 @@ p {
   margin: 0 auto;
 }
 .signup-wrapper .company-details .logo .icon-food {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/182774/food.png);
+
   background-size: contain;
   background-repeat: no-repeat;
   width: 38px;
