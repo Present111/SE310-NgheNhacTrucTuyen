@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>COLMUSIC - Đăng ký</title>
     <link rel="icon" href="~/image/logo.jpg" type="image/png" />
-    <link rel="stylesheet" href="~/Content/logincss.css" />
     <link rel="stylesheet" href="~/fonts/fontawesome-free-6.2.0-web/css/all.min.css" />
 
 
@@ -46,13 +45,26 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-image: url('@Url.Content("~/image/login.jpg")');
+            background-size: cover; 
+            background-position: center; 
+            width:600px;
         }
 
         .signup-form {
             width: 60%;
             background-color: #fff;
             padding: 40px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+           
         }
+
+        
+
+
+      
 
         .form-title {
             font-size: 28px;
@@ -113,6 +125,11 @@
             font-weight: 600;
             text-decoration: none;
         }
+        .signup-wrapper{
+            width:1000px;
+            height:600px;
+        }
+
     </style>
 
 </head>
@@ -123,7 +140,7 @@
                 <div class="company-details">
                     <div class="shadow"></div>
                     <div class="wrapper-1">
-                        <a href="/Home/Index" style="text-decoration: none;">
+                        <a href="/Home/Index" style="text-decoration: none; text-align: center; color: white;">
                             <div class="logo">
                                 <i class="fa-solid fa-music fa-3x"></i>
                             </div>
