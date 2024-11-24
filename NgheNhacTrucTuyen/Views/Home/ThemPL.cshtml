@@ -11,20 +11,20 @@
                     <section class="playlist-creation">
                         <h1 class="playlist-title">
                             Hãy đặt tên cho danh sách phát của bạn
-                        </h1>  
+                        </h1>
                         <p class="messagesuccess">@TempData["success"]</p>
-                                  
+
                         <form action="/Home/ThemPL" method="post" class="playlist-form">
                             <input type="text" name="tenPL" placeholder="Nhập tên danh sách của bạn" required class="playlist-input" />
                             <button type="submit" class="playlist-button">Thêm</button>
 
-                            <!-- Hidden inputs for selected songs -->
+                           
                             <input type="hidden" name="selectedSongsList" id="selectedSongsList" />
                         </form>
                     </section>
                     <div class="card">
                         <div class="card-body">
-                            <table class="table playlist-table">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -37,12 +37,17 @@
                                 <tbody>
                                     @foreach (var item in ViewBag.baihats)
                                     {
-                                        <tr>
-                                            <td><input type="checkbox" name="selectedSongs" value="@item.MaBH" /></td>
-                                            <td>@item.TenBH</td>
-                                            <td><img src="/image/@item.image" width="50" height="50" class="song-img" /></td>
-                                            <td>@item.CaSi.TenCS</td>
-                                            <td>@item.NgayPH.ToString("dd/MM/yyyy")</td>
+                                        <tr class="song-row">
+                                            <td style="vertical-align: middle">
+                                                <input type="checkbox" name="selectedSongs" value="@item.MaBH" class="song-checkbox" id="song-@item.MaBH" />
+                                                <label for="song-@item.MaBH"></label>
+                                            </td>
+                                            <td style="vertical-align: middle">@item.TenBH</td>
+                                            <td style="vertical-align: middle;">
+                                                <img src="/image/@item.image" width="100" height="100" />
+                                            </td>
+                                            <td style="vertical-align: middle">@item.CaSi.TenCS</td>
+                                            <td style="vertical-align: middle">@item.NgayPH.ToString("dd/MM/yyyy")</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -56,11 +61,10 @@
 </div>
 
 <style>
-    /* Spotify-like theme styling */
     .main-view-container {
         background-color: #121212;
         color: #ffffff;
-        padding: 20px;
+        padding-top: 20px;
         border-radius: 8px;
     }
 
@@ -68,7 +72,7 @@
         font-size: 24px;
         font-weight: bold;
         margin-bottom: 10px;
-        color: #1DB954; /* Spotify green */
+        color: #1DB954;
     }
 
     .playlist-form {
@@ -108,55 +112,105 @@
         padding: 15px;
     }
 
-    .playlist-table {
+    table {
         width: 100%;
-        border-collapse: collapse;
+        color: #ccc;
+        vertical-align: middle;
     }
 
-        .playlist-table th, .playlist-table td {
-            padding: 12px 10px;
-            text-align: left;
-            border-bottom: 1px solid #333;
-        }
-
-        .playlist-table th {
-            font-weight: bold;
-            color: #b3b3b3;
-        }
-
-        .playlist-table tr:hover {
-            background-color: #333;
-        }
-
-    .song-img {
-        border-radius: 4px;
+    .table td:first-child, .table th:first-child {
+        padding-left: 20px; 
     }
 
     input[type="checkbox"] {
-        transform: scale(1.2);
+        transform: scale(1.5);
+        margin-right: 15px;
+        cursor: pointer;
     }
 
+        input[type="checkbox"]:checked {
+            background-color: #1DB954;
+            border-color: #1DB954;
+        }
+
+    .playlist-table td:first-child, .playlist-table th:first-child {
+        padding-left: 20px;
+        
+    }
 
     .messagesuccess {
-      
         color: white;
     }
 
-    
+    .song-row {
+        cursor: pointer;
+    }
+        .song-row.checked {
+            background-color: #1DB954;
+        }   
+
+    .song-checkbox-label {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #222222;
+    }
+
+    tr:nth-child(even) {
+        background-color: #282828;
+    }
+
+    tr:hover {
+        background-color: #333;
+    }
+
+    thead {
+        background-color: #282828;
+    }
+
+    img {
+        border-radius: 8px; 
+       
+    }
 
 </style>
 
 <script>
-    // Function to collect selected songs' IDs and store them in a hidden input field
+    document.querySelectorAll('.song-row').forEach(function (row) {
+        row.addEventListener('click', function (event) {
+            let checkbox = row.querySelector('.song-checkbox');
+            if (event.target !== checkbox && !event.target.classList.contains('song-checkbox-label')) {
+                checkbox.checked = !checkbox.checked;
+            }
+            if (checkbox.checked) {
+                row.classList.add('checked');
+            } else {
+                row.classList.remove('checked');
+            }
+        });
+    });
+
     document.querySelector(".playlist-form").addEventListener("submit", function (event) {
         let selectedSongs = [];
 
-        // Collect all checked checkboxes
         document.querySelectorAll('input[name="selectedSongs"]:checked').forEach(function (checkbox) {
-            selectedSongs.push(checkbox.value); // Push the song ID to the array
+            selectedSongs.push(checkbox.value);
         });
 
-        // Set the value of the hidden input field with selected song IDs
-        document.getElementById("selectedSongsList").value = selectedSongs.join(","); // Join them with commas
+        document.getElementById("selectedSongsList").value = selectedSongs.join(",");
     });
+
+
+
+
 </script>
