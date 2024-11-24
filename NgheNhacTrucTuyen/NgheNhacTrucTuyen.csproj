@@ -156,7 +156,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="image\logo.jpg" />
     <Content Include="image\spotify.gif" />
     <Content Include="image\tải xuống.jpg" />
     <Content Include="Content\bootstrap-theme.css.map" />
