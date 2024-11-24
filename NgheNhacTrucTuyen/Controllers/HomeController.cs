@@ -1,4 +1,5 @@
-﻿using NgheNhacTrucTuyen.Models;
+﻿using Microsoft.Ajax.Utilities;
+using NgheNhacTrucTuyen.Models;
 using System;
 using System.Collections.Generic;
 using System.EnterpriseServices.CompensatingResourceManager;
@@ -118,7 +119,7 @@ namespace NgheNhacTrucTuyen.Controllers
             if (Session["Email"] != null)
             {
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
-                List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).ToList();
+                List<PlayList> PL = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).DistinctBy(x => new {x.MaBH}).ToList();
                 ViewBag.playlist = PL;
                 ViewBag.s = PL.Count() - 1;
                 ViewBag.tk = a;
