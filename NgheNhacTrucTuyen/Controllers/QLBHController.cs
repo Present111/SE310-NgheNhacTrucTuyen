@@ -21,7 +21,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult DSBaiHat()
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var baihat = context.Nhacs.ToList();
+            var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
             ViewBag.Casis = context.CaSis.ToList();
             ViewBag.theloais = context.TheLoais.ToList();

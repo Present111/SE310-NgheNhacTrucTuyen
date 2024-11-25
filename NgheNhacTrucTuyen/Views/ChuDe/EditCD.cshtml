@@ -8,7 +8,7 @@
         <div style="margin-top: 64px;"></div>
         <br />
         <br />
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("EditCD", "Chude", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -27,8 +27,7 @@
                 <div class="form-group">
                     <label class="control-label">Ảnh chủ đề</label>
                     <input type="text" value="@ViewBag.anhchude" readonly class="form-control" />
-                    @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @type = "file", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                    <input type="file" name="fileanh" class="form-control"/>
                 </div>
 
                 <div class="form-group">

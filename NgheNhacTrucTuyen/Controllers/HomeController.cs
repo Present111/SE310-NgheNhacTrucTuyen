@@ -19,9 +19,9 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult Index()
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var theloai = context.TheLoais.ToList();
+            var theloai = context.TheLoais.OrderBy(x => x.TenTL).ToList();
             ViewBag.test = theloai;
-            var nhac = context.Nhacs.ToList();
+            var nhac = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.jointable = nhac;
             return View();
         }
@@ -33,7 +33,7 @@ namespace NgheNhacTrucTuyen.Controllers
             DBcontextDataContext context = new DBcontextDataContext();
             var theloai = context.TheLoais.ToList();
             ViewBag.test = theloai;
-            var nhac = context.Nhacs.ToList();
+            var nhac = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.jointable = nhac;
             return PartialView("Index1");
         }
@@ -56,7 +56,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult TimKiem(string SearchString)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            List<Nhac> a = context.Nhacs.ToList();
+            List<Nhac> a = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             var link = from l in a select l;
 
             if (!string.IsNullOrEmpty(SearchString))
@@ -215,7 +215,7 @@ namespace NgheNhacTrucTuyen.Controllers
             }
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             ViewBag.baihat = n;
-            var nhac = context.Nhacs.Where(x => x.MaCS == n.MaCS).ToList();
+            var nhac = context.Nhacs.Where(x => x.MaCS == n.MaCS).OrderBy(x => x.TenBH).ToList();
             ViewBag.list = nhac;
             return View();
         }
@@ -236,7 +236,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult ThemPL()
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var baihat = context.Nhacs.ToList();
+            var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
             TempData["success"] = null;
             return PartialView("ThemPL");
@@ -246,7 +246,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult ThemPL(string tenPL, string selectedSongsList)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var baihat = context.Nhacs.ToList();
+            var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
 
@@ -307,7 +307,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult EditPL(string tenPL)
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var baihat = context.Nhacs.ToList();
+            var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
             ViewBag.tenPL = tenPL;
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());

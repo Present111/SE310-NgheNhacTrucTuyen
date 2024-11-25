@@ -9,7 +9,7 @@
     <div class="main-view-container">
         <div style="margin-top: 64px;"></div>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "QLBH", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -29,8 +29,7 @@
                     <div class="form-group">
                         <label class="control-label">File nhạc</label>
                         <input type="text" value="@ViewBag.nhac.Files" readonly class="form-control" />
-                        @Html.EditorFor(model => model.Files, new { htmlAttributes = new { @type = "file", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Files, "", new { @class = "text-danger" })
+                        <input type="file" name="filenhac" class="form-control"/>
                     </div>
                 </div>
 
@@ -39,8 +38,7 @@
                     <div class="form-group">
                         <label class="control-label">Ảnh</label>
                         <input type="text" value="@ViewBag.nhac.image" readonly class="form-control" />
-                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                        <input type="file" name="fileanh" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Ngày phát hành</label>
