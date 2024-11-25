@@ -39,24 +39,19 @@
                                                                 <h2 class="Type__TypeElement-goli3j-0 eJZNLq">
                                                                     <a draggable="false"
                                                                        data-testid="see-all-link"
-                                                                       class="MfVrtIzQJ7iZXfRWg6eM"
-                                                                       href="/section/0JQ5DAuChZYPe9iDhh2mJz">@item1.TenTL </a>
+                                                                       class="MfVrtIzQJ7iZXfRWg6eM">@item1.TenTL </a>
                                                                 </h2>
                                                             </div>
                                                             <a draggable="false"
                                                                class="a7lvtXATo3HALtrsOHtO HOgue4Eg4UdBR58M0633"
-                                                               href="/section/0JQ5DAuChZYPe9iDhh2mJz">
-                                                                <span class="Type__TypeElement-goli3j-0 kiDDHS">Xem tất cả</span>
+                                                               onclick="toggleVisibility(event)">
+                                                                <span class="Type__TypeElement-goli3j-0 kiDDHS" id="toggle-text">Xem tất cả</span>
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div data-testid="grid-container"
                                                          class="iKwGKEfAfW7Rkx2_Ba4E Z4InHgCs2uhk0MU93y_a"
-                                                         style="
-                                      --column-width: 188px;
-                                      --column-count: 6;
-                                      --grid-gap: 24px;
-                                    ">
+                                                         style="--column-width: 188px;--column-count: 6;--grid-gap: 24px;">
                                                         @foreach (var item in ViewBag.jointable)
                                                         {
                                                             if (item.MaTL == item1.MaTL)
@@ -121,3 +116,25 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    function toggleVisibility(event) {
+        // Get the closest section and the grid container within it
+        const section = event.target.closest('section');
+        const gridContainer = section.querySelector('[data-testid="grid-container"]');
+        const toggleText = section.querySelector('#toggle-text');
+
+        // Toggle the grid rows and button text
+        if (gridContainer.style.gridAutoRows === 'auto') {
+            // Hide some items by reverting the grid style and update text to "Xem tất cả"
+            gridContainer.style.gridAutoRows = ''; // Reset grid-auto-rows style to default
+            toggleText.innerText = 'Xem tất cả'; // Change the text back to "Xem tất cả"
+        } else {
+            // Show all items by expanding the rows and update text to "Ẩn bớt"
+            gridContainer.style.gridAutoRows = 'auto'; // Apply grid-auto-rows to expand rows
+            toggleText.innerText = 'Ẩn bớt'; // Change the text to "Ẩn bớt"
+        }
+    }
+</script>

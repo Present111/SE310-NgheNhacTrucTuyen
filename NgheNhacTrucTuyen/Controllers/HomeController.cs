@@ -31,7 +31,7 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult Index1()
         {
             DBcontextDataContext context = new DBcontextDataContext();
-            var theloai = context.TheLoais.ToList();
+            var theloai = context.TheLoais.OrderBy(x => x.TenTL).ToList();
             ViewBag.test = theloai;
             var nhac = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.jointable = nhac;
