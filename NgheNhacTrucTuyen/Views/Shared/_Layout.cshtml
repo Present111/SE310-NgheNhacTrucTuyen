@@ -323,11 +323,7 @@
                                  aria-label="Điều khiển trình phát">
                                 <div class="player-controls__buttons player-controls__buttons--new-icons">
                                     <div class="player-controls__left">
-                                        <button class="fn72ari9aEmKo4JcwteT"
-                                                aria-label="Trộn"
-                                                style="--button-size: 32px">
-                                            <i class="fa-solid fa-shuffle"></i>
-                                        </button>
+                                        
                                         <button class="fn72ari9aEmKo4JcwteT"
                                                 aria-label="Trước"
                                                 onclick=" playPrev()"
@@ -352,11 +348,7 @@
                                                 style="--button-size: 32px">
                                             <i class="fa-solid fa-forward"></i>
                                         </button>
-                                        <button class="mnipjT4SLDMgwiDCEnRC"
-                                                aria-label="Lặp"
-                                                style="--button-size: 32px">
-                                            <i class="fa-solid fa-repeat"></i>
-                                        </button>
+                                       
                                     </div>
                                 </div>
                                 <div class="playback-bar">
@@ -469,7 +461,31 @@
             document.getElementById('tencasilayout').textContent = casi;
             document.getElementById('playbtn').style.display = 'none';
             document.getElementById('pausebtn').style.display = 'block';
+            document.getElementById('demo').onended = function () {
+                document.getElementById('demo').currentTime = 0;
+                document.getElementById('demo').play();
+                togglePlayPauseButtons(true);
+            };
         }
+
+
+        function playaudio1(playlist) {
+            if (playlist.length > 0) {
+                var song = playlist[currentIndex]; // Lấy bài hát theo chỉ mục hiện tại
+                var audio = document.getElementById('demo');
+                audio.src = song.file;  // Đường dẫn file nhạc
+                audio.play();           // Phát nhạc
+
+                // Cập nhật thông tin giao diện
+                document.getElementById('imagelayout').src = song.image;
+                document.getElementById('tenbaihatlayout').textContent = song.name;
+                document.getElementById('tencasilayout').textContent = song.artist;
+                document.getElementById('playbtn').style.display = 'none';
+                document.getElementById('pausebtn').style.display = 'block';
+            }
+        }
+
+
         function playaudioo() {
             document.getElementById('demo').play();
             document.getElementById('playbtn').style.display = 'none';
@@ -519,7 +535,7 @@
             audio.currentTime = seekTime;
         };
 
-
+        
 
 
     </script>

@@ -439,7 +439,7 @@
 
 
 
-    
+
     function deletePlaylist(tenPL) {
         contextMenu.style.display = "none";
         fetch('/Home/XoaPL', {
@@ -450,15 +450,15 @@
             body: JSON.stringify({ tenPL: tenPL })
         }).then(response => {
             if (response.ok) {
-                window.location.href = '/Home/Library';  
+                window.location.href = '/Home/Library';
             } else {
                 console.error("Lỗi khi xóa playlist");
             }
         }).catch(error => {
-                console.error("Lỗi khi xóa playlist:", error);
+            console.error("Lỗi khi xóa playlist:", error);
         });
     }
 
-  
+
 
 </script>
