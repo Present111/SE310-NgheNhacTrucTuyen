@@ -300,8 +300,8 @@
             {
                 <text>
                 {
-                    name: '@item.Nhac.TenBH',
-                    artist: '@item.Nhac.CaSi.TenCS',
+                    name: @Html.Raw(Json.Encode(item.Nhac.TenBH)),
+                    artist: @Html.Raw(Json.Encode(item.Nhac.CaSi.TenCS)),
                     file: '/Sound/@item.Nhac.Files',
                     image: '/image/@item.Nhac.image'
                 },
@@ -309,7 +309,7 @@
             }
         }
     ];
-   
+
     var currentIndex = -1;
     var count = playlist.length;
 
