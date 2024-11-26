@@ -469,22 +469,6 @@
         }
 
 
-        function playaudio1(playlist) {
-            if (playlist.length > 0) {
-                var song = playlist[currentIndex]; // Lấy bài hát theo chỉ mục hiện tại
-                var audio = document.getElementById('demo');
-                audio.src = song.file;  // Đường dẫn file nhạc
-                audio.play();           // Phát nhạc
-
-                // Cập nhật thông tin giao diện
-                document.getElementById('imagelayout').src = song.image;
-                document.getElementById('tenbaihatlayout').textContent = song.name;
-                document.getElementById('tencasilayout').textContent = song.artist;
-                document.getElementById('playbtn').style.display = 'none';
-                document.getElementById('pausebtn').style.display = 'block';
-            }
-        }
-
 
         function playaudioo() {
             document.getElementById('demo').play();
@@ -506,17 +490,7 @@
         var audio = document.getElementById('demo');
         var progress = document.getElementById('progress');
 
-        function playNext() {
-            currentIndex = (currentIndex + 1) % count;
-            var song = playlist[currentIndex];
-            playaudio1(song.Files, song.image, song.TenBH, song.Casi);
-        }
-
-        function playPrev() {
-            currentIndex = (currentIndex + count - 1) % count;
-            var song = playlist[currentIndex];
-            playaudio1(song.Files, song.image, song.TenBH, song.Casi);
-        }
+       
         // Khi tiến độ bài hát thay đổi
         // When the song progress changes
         audio.ontimeupdate = function () {
@@ -535,6 +509,35 @@
             audio.currentTime = seekTime;
         };
 
+
+        function playaudio2() {
+            if (playlist.length > 0) {
+                var song = playlist[currentIndex];  // Lấy bài hát theo chỉ mục hiện tại
+                var audio = document.getElementById('demo');
+                audio.src = song.file;  // Đường dẫn file nhạc
+                audio.play();           // Phát nhạc
+
+                // Cập nhật thông tin giao diện
+                document.getElementById('imagelayout').src = song.image;
+                document.getElementById('tenbaihatlayout').textContent = song.name;
+                document.getElementById('tencasilayout').textContent = song.artist;
+                document.getElementById('playbtn').style.display = 'none';
+                document.getElementById('pausebtn').style.display = 'block';
+            }
+            audio.onended = playNext;
+        }
+
+        function playNext() {
+            currentIndex = (currentIndex + 1) % count;  // Tăng chỉ mục và quay lại đầu nếu hết danh sách
+            playaudio2();  // Gọi hàm phát nhạc với bài hát mới
+        }
+
+        function playPrev() {
+            currentIndex = (currentIndex + count - 1) % count;  // Giảm chỉ mục và quay lại cuối nếu hết danh sách
+            playaudio2();  // Gọi hàm phát nhạc với bài hát mới
+        }
+
+        
         
 
 

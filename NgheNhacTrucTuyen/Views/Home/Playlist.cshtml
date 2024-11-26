@@ -86,7 +86,8 @@
                                                             <div class="PFgcCoJSWC3KjhZxHDYH">
                                                                 <button data-testid="play-button"
                                                                         id="playButton"
-                                                                        class="Button-qlcn5g-0 ktZgWY">
+                                                                        class="Button-qlcn5g-0 ktZgWY"
+                                                                         onclick="playNext()">
                                                                     <i class="fa-solid fa-circle-play fa-3x"></i>
                                                                 </button>
                                                             </div>
@@ -256,7 +257,7 @@
                                                                          role="gridcell"
                                                                          aria-colindex="4"
                                                                          tabindex="-1">
-                                                                        <span class="Type__TypeElement-goli3j-0 gPOKDu">15 thg 11, 2021</span>
+                                                                        <span class="Type__TypeElement-goli3j-0 gPOKDu">@item.Nhac.NgayPH</span>
                                                                     </div>
                                                                     <div class="HcMOFLaukKJdK5LfdHh0"
                                                                          role="gridcell"
@@ -320,45 +321,6 @@
     </div>
 
 </div>
-<script>
-    const playlist = document.getElementById('playlist').children;
-    const player = document.getElementById('player');
-    const playButton = document.getElementById('playButton');
-
-    let isPlaying = false;
-
-    // Lặp qua tất cả các phần tử trong danh sách phát và thêm chúng vào bộ đệm
-    for (let i = 0; i < playlist.length; i++) {
-        playlist[i].addEventListener('click', function () {
-            player.src = this.getAttribute('data-src');
-            const title = this.getAttribute('data-title');
-            const artist = this.getAttribute('data-artist');
-
-            i
-        });
-    }
-
-
-    // Bắt sự kiện "click" trên nút phát nhạc
-    playButton.addEventListener('click', function () {
-        if (isPlaying) {
-            player.pause();
-            playButton.textContent = 'Play';
-        } else {
-            if (player.readyState >= 4) {
-                player.play();
-            } else {
-                player.addEventListener('canplay', function () {
-                    player.play();
-                });
-                player.load();
-            }
-            playButton.textContent = 'Pause';
-        }
-        isPlaying = !isPlaying;
-    });
-</script>
-
 
 <style>
 
@@ -460,5 +422,29 @@
     }
 
 
+
+</script>
+
+
+<script>
+    var playlist = [
+        @foreach (var item in ViewBag.playlist)
+        {
+            if (item.MaBH != null)
+            {
+                <text>
+                {
+                    name: '@item.Nhac.TenBH',
+                    artist: '@item.Nhac.CaSi.TenCS',
+                    file: '/Sound/@item.Nhac.Files',
+                    image: '/image/@item.Nhac.image'
+                },
+                </text>
+            }
+        }
+    ];
+
+    var currentIndex = -1;
+    var count = playlist.length;
 
 </script>

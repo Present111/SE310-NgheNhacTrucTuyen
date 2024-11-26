@@ -93,7 +93,8 @@
                                                             <div class="PFgcCoJSWC3KjhZxHDYH">
                                                                 <button data-testid="play-button"
                                                                         aria-label="Phát"
-                                                                        class="Button-qlcn5g-0 ktZgWY">
+                                                                        class="Button-qlcn5g-0 ktZgWY"
+                                                                        onclick="playNext()">
                                                                     <i class="fa-solid fa-circle-play fa-3x"></i>
                                                                 </button>
                                                             </div>
@@ -291,3 +292,25 @@
     </div>
 </div>
 
+<script>
+    var playlist = [
+        @foreach (var item in ViewBag.playlist)
+        {
+            if (item.MaBH != null)
+            {
+                <text>
+                {
+                    name: '@item.Nhac.TenBH',
+                    artist: '@item.Nhac.CaSi.TenCS',
+                    file: '/Sound/@item.Nhac.Files',
+                    image: '/image/@item.Nhac.image'
+                },
+                </text>
+            }
+        }
+    ];
+   
+    var currentIndex = -1;
+    var count = playlist.length;
+
+</script>
