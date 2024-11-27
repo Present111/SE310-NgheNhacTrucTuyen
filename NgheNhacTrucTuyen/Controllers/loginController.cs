@@ -14,12 +14,20 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (Session["islogin"] != null && (bool)Session["islogin"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(string emai, string password)
         {
+            if (Session["islogin"] != null && (bool)Session["islogin"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext db = new DBcontextDataContext();
             var adminUser = db.accounts.FirstOrDefault(x => x.Email == emai && x.PassWord == password && x.Role == 0);
             if (adminUser != null)
@@ -53,12 +61,20 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult SignUp()
         {
+            if (Session["islogin"] != null && (bool)Session["islogin"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult SignUp(string email, string psw, string ten)
         {
+            if (Session["islogin"] != null && (bool)Session["islogin"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var check = context.accounts.FirstOrDefault(s => s.Email == email);
             if (check == null)

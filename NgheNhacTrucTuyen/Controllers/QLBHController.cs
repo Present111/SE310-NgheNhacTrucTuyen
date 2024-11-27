@@ -20,6 +20,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult DSBaiHat()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
@@ -33,6 +41,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             ViewBag.Casis = new SelectList(context.CaSis, "MaCS", "TenCS");
             ViewBag.Theloais = new SelectList(context.TheLoais, "MaTL", "TenTL");
@@ -43,6 +59,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase filenhac, HttpPostedFileBase fileanh)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
@@ -81,6 +105,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
 
@@ -97,6 +129,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult Edit(int id, HttpPostedFileBase filenhac, HttpPostedFileBase fileanh)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             Nhac n = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
 
@@ -134,7 +174,14 @@ namespace NgheNhacTrucTuyen.Controllers
 
         public ActionResult Delete(int id)
         {
-
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var data = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             if (data != null)
@@ -154,6 +201,14 @@ namespace NgheNhacTrucTuyen.Controllers
 
         public ActionResult Detail(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             Nhac a = context.Nhacs.FirstOrDefault(x => x.MaBH == id);
             ViewBag.detail = a;
@@ -165,6 +220,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult ThemvaoPL(int id, string TenPL)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (Session["Email"] != null)
             {
                 DBcontextDataContext context = new DBcontextDataContext();
@@ -191,6 +254,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult XoakhoiPL(int id, string TenPL)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Session["Email"] == null)
             {
@@ -213,6 +284,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult XoakhoiYT(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Session["Email"] == null)
             {

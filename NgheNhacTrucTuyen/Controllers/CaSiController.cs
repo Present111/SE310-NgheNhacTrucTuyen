@@ -16,6 +16,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [Route("CreateCS")]
         public ActionResult CreateCS()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
@@ -42,6 +50,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [Route("EditCS")]
         public ActionResult EditCS(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             CaSi ca = context.CaSis.FirstOrDefault(x => x.MaCS == id);
             if (Request.Form.Count == 0)
@@ -57,6 +73,14 @@ namespace NgheNhacTrucTuyen.Controllers
 
         public ActionResult DeleteCS(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var data = context.CaSis.FirstOrDefault(x => x.MaCS == id);
             var nhacData = context.Nhacs.FirstOrDefault(x => x.MaCS == id);

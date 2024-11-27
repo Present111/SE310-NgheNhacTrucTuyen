@@ -13,6 +13,14 @@ namespace NgheNhacTrucTuyen.Controllers
         // GET: Chude
         public ActionResult CreateCD(HttpPostedFileBase fileanh)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
@@ -47,6 +55,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult EditCD(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             ChuDe cd = context.ChuDes.FirstOrDefault(x => x.MaCD == id);
             ViewBag.chude = cd;
@@ -61,6 +77,14 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult EditCD(int id, HttpPostedFileBase fileanh)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             ChuDe cd = context.ChuDes.FirstOrDefault(x => x.MaCD == id);
             if (Request.Form.Count == 0)
@@ -86,6 +110,14 @@ namespace NgheNhacTrucTuyen.Controllers
 
         public ActionResult DeleteCD(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var data = context.ChuDes.FirstOrDefault(x => x.MaCD == id);
             if (data != null)

@@ -107,9 +107,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 return PartialView("Library");
                 
             }
-            ViewBag.Thuvien = new List<PlayList>(); 
-            ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpGet]
@@ -128,9 +126,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 return View();
 
             }
-            ViewBag.playlist=new List<PlayList>();
-            ViewBag.ErrorMessage = "Bạn phải đăng nhập để xem thư viện.";
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpPost]
@@ -141,7 +137,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 DBcontextDataContext context = new DBcontextDataContext();
                 if (Session["Email"] == null)
                 {
-                    return Json(new { success = false, message = "Người dùng không tồn tại." });
+                    return RedirectToAction("Login", "Login");
                 }
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());             
                 PlayList p = new PlayList
@@ -170,7 +166,7 @@ namespace NgheNhacTrucTuyen.Controllers
                 DBcontextDataContext context = new DBcontextDataContext();
                 if (Session["Email"] == null)
                 {
-                    return Json(new { success = false, message = "Người dùng không tồn tại." });
+                    return RedirectToAction("Login", "Login");
                 }
                 account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
                 List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.MaBH == id && x.TenPL == "").ToList(); 
@@ -235,6 +231,10 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult ThemPL()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
@@ -245,6 +245,10 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult ThemPL(string tenPL, string selectedSongsList)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
@@ -291,6 +295,10 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult XoaPL(string tenPL)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
             List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPL).ToList();
@@ -306,6 +314,10 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpGet]
         public ActionResult EditPL(string tenPL)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var baihat = context.Nhacs.OrderBy(x => x.TenBH).ToList();
             ViewBag.baihats = baihat;
@@ -320,6 +332,10 @@ namespace NgheNhacTrucTuyen.Controllers
         [HttpPost]
         public ActionResult EditPL(string tenPLold, string tenPL,string selectedSongsList)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.Email == Session["Email"].ToString());
             List<PlayList> playlistItems = context.PlayLists.Where(x => x.Matk == a.MaTK && x.TenPL == tenPLold).ToList();

@@ -11,6 +11,14 @@ namespace NgheNhacTrucTuyen.Controllers
     {
         public ActionResult DSTaiKhoan()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var a = context.accounts.ToList();
             ViewBag.taikhoan = a;
@@ -20,6 +28,14 @@ namespace NgheNhacTrucTuyen.Controllers
         public ActionResult EditTK(int id)
 
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             account a = context.accounts.FirstOrDefault(x => x.MaTK == id);
             if (Request.Form.Count == 0)
@@ -37,6 +53,14 @@ namespace NgheNhacTrucTuyen.Controllers
         }
         public ActionResult CreateTK()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
@@ -65,6 +89,14 @@ namespace NgheNhacTrucTuyen.Controllers
         }
         public ActionResult DeleteTK(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             var data = context.accounts.FirstOrDefault(x => x.MaTK == id);
             if (data != null)

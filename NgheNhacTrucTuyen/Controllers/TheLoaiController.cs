@@ -12,6 +12,14 @@ namespace NgheNhacTrucTuyen.Controllers
         // GET: Theloai
         public ActionResult CreateTL()
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             if (Request.Form.Count > 0)
             {
@@ -38,6 +46,14 @@ namespace NgheNhacTrucTuyen.Controllers
     
         public ActionResult EditTL(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
             TheLoai tl = context.TheLoais.FirstOrDefault(x => x.MaTL == id);
             if (Request.Form.Count == 0)
@@ -52,6 +68,14 @@ namespace NgheNhacTrucTuyen.Controllers
         }
         public ActionResult DeleteTL(int id)
         {
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["adm"] != null && !(bool)Session["adm"])
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DBcontextDataContext context = new DBcontextDataContext();
            var data = context.TheLoais.FirstOrDefault(x => x.MaTL == id);
             if (data != null)
